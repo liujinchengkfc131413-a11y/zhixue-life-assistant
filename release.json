@@ -1,0 +1,6 @@
+{
+  "formatVersion": 1,
+  "productVersion": "2.0.0-rc.4",
+  "channel": "release-candidate",
+  "supersedes": "2.0.0-rc.3"
+}

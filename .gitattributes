@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+*.dll binary
+*.exe binary
+*.node binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
+*.db binary
+*.zip binary

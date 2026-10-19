@@ -1,0 +1,68 @@
+.app-shell:not([data-theme='today']) :is(.state-panel, .empty-state) {
+  color: var(--text-secondary);
+}
+
+.app-shell:not([data-theme='today']) .state-panel {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-card-small);
+  background: var(--surface);
+}
+
+.app-shell:not([data-theme='today']) .state-panel--empty {
+  border-style: dashed;
+}
+
+.app-shell:not([data-theme='today']) .state-panel--error {
+  border-color: color-mix(in srgb, var(--semantic-danger) 55%, transparent);
+  background: color-mix(in srgb, var(--semantic-danger) 9%, var(--surface));
+  box-shadow: inset 3px 0 0 var(--semantic-danger);
+}
+
+.app-shell:not([data-theme='today']) .state-panel__icon {
+  color: var(--text-secondary);
+  background: var(--surface-elevated);
+}
+
+.app-shell:not([data-theme='today']) .state-panel--error .state-panel__icon {
+  color: var(--semantic-danger);
+  background: color-mix(in srgb, var(--semantic-danger) 16%, transparent);
+}
+
+.app-shell:not([data-theme='today']) :is(.state-panel__body strong, .empty-state strong) {
+  color: var(--text-primary);
+  font-size: var(--font-size-card-title);
+}
+
+.app-shell:not([data-theme='today']) .state-panel__body p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-secondary);
+}
+
+.app-shell:not([data-theme='today']) [aria-busy='true'] {
+  cursor: progress;
+}
+
+.app-shell:not([data-theme='today']) .loading-skeleton {
+  min-height: 14px;
+  border-radius: var(--radius-control);
+  background: linear-gradient(90deg, var(--surface), var(--surface-hover), var(--surface));
+  background-size: 200% 100%;
+  animation: v2-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes v2-skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell:not([data-theme='today']) .loading-skeleton {
+    animation: none;
+    background: var(--surface-elevated);
+  }
+}

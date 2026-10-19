@@ -1,0 +1,279 @@
+.app-shell[data-theme='work'] {
+  --color-scheme: dark;
+  --page-bg: #0e141b;
+  --page-bg-secondary: #21313f;
+  --surface: rgb(25 45 59 / 56%);
+  --surface-elevated: rgb(55 82 104 / 64%);
+  --surface-hover: rgb(65 93 112 / 72%);
+  --field-bg: rgb(46 67 78 / 68%);
+  --field-hover: rgb(53 76 87 / 76%);
+  --field-border: rgb(188 215 228 / 15%);
+  --border-soft: rgb(194 220 234 / 14%);
+  --border: rgb(194 220 234 / 20%);
+  --border-strong: rgb(194 220 234 / 32%);
+  --border-focus: #8fc8f2;
+  --text-primary: #edf4f8;
+  --text-secondary: #c6d3dc;
+  --text-muted: #a5b7c3;
+  --accent: #6faee8;
+  --accent-hover: #8fc8f2;
+  --accent-strong: #8fc8f2;
+  --accent-soft: rgb(111 174 232 / 14%);
+  --accent-cyan: #72c4cf;
+  --accent-steel: #82aedd;
+  --accent-violet: #a89bd5;
+  --button-primary-text: #0e141b;
+  --focus-ring: var(--border-focus);
+  --panel-blur: 14px;
+  --panel-shadow: inset 0 1px 0 rgb(255 255 255 / 8%), 0 18px 46px rgb(2 10 16 / 18%);
+  --panel-background:
+    linear-gradient(180deg, rgb(255 255 255 / 7%), rgb(255 255 255 / 1.5%)), rgb(25 45 59 / 56%);
+  --panel-background-elevated:
+    linear-gradient(180deg, rgb(255 255 255 / 11%), rgb(255 255 255 / 3%)), rgb(55 82 104 / 64%);
+  --panel-shadow-elevated: inset 0 1px 0 rgb(255 255 255 / 12%), 0 22px 58px rgb(2 10 16 / 24%);
+  --sidebar-base: #12222e;
+  --sidebar-background:
+    linear-gradient(180deg, rgb(44 63 80 / 36%), transparent 48%), var(--sidebar-base);
+  --control-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+  --drawer-shadow: -12px 0 36px rgb(2 10 16 / 24%);
+  --dialog-backdrop: rgb(7 11 13 / 68%);
+  --dialog-shadow: 0 24px 70px rgb(0 0 0 / 38%);
+  --environment-background: transparent;
+  --environment-light: rgb(213 228 242 / 14%);
+  --environment-mist: rgb(139 166 191 / 10%);
+  --environment-sunlight: rgb(249 235 210 / 8%);
+  --environment-edge: rgb(4 12 18 / 18%);
+  --environment-opacity: 1;
+  --environment-duration: 32s;
+  --card-radius: 18px;
+  --card-gap: 16px;
+  --motion-hover: 170ms;
+  --motion-panel: 210ms;
+}
+
+.app-shell[data-theme='life'] {
+  --color-scheme: light;
+  --page-bg: #eaf2ec;
+  --page-bg-secondary: #d7e6d8;
+  --surface: rgb(255 253 246 / 72%);
+  --surface-elevated: rgb(255 255 252 / 88%);
+  --surface-hover: rgb(246 247 244 / 94%);
+  --field-bg: rgb(225 234 223 / 86%);
+  --field-hover: rgb(217 229 216 / 94%);
+  --field-border: rgb(112 141 118 / 38%);
+  --border-soft: rgb(124 151 128 / 18%);
+  --border: rgb(124 151 128 / 24%);
+  --border-strong: rgb(111 139 116 / 34%);
+  --border-focus: rgb(220 164 110 / 72%);
+  --text-primary: #344239;
+  --text-secondary: #526158;
+  --text-muted: #5b6a61;
+  --accent: #f4a74c;
+  --accent-hover: #e99636;
+  --accent-strong: #f4a74c;
+  --accent-soft: rgb(244 167 76 / 18%);
+  --accent-shopping: #f4a74c;
+  --accent-diet: #7dac87;
+  --accent-fitness: #79b7a7;
+  --accent-entertainment: #a992c6;
+  --button-primary-text: #3f3326;
+  --focus-ring: var(--border-focus);
+  --panel-blur: 7px;
+  --panel-shadow: inset 0 1px 0 rgb(255 255 255 / 48%), 0 16px 38px rgb(68 92 72 / 9%);
+  --panel-background: linear-gradient(145deg, rgb(255 253 246 / 74%), rgb(238 245 237 / 64%));
+  --panel-background-elevated: linear-gradient(
+    145deg,
+    rgb(255 255 252 / 90%),
+    rgb(246 248 242 / 82%)
+  );
+  --panel-shadow-elevated: inset 0 1px 0 rgb(255 255 255 / 66%), 0 20px 46px rgb(68 92 72 / 13%);
+  --sidebar-base: #edf3eb;
+  --sidebar-background:
+    radial-gradient(ellipse 90% 44% at 14% 2%, rgb(255 247 224 / 66%), transparent 74%),
+    linear-gradient(165deg, rgb(246 247 240 / 96%), rgb(229 239 227 / 94%));
+  --control-shadow: inset 0 1px 0 rgb(255 255 255 / 46%);
+  --drawer-shadow: -12px 0 36px rgb(68 92 72 / 13%);
+  --dialog-backdrop: rgb(37 49 41 / 32%);
+  --dialog-shadow: 0 24px 70px rgb(68 92 72 / 18%);
+  --environment-background: transparent;
+  --environment-light: rgb(255 247 224 / 64%);
+  --environment-mist: rgb(246 249 242 / 52%);
+  --environment-sunlight: rgb(255 212 146 / 22%);
+  --environment-edge: rgb(85 111 90 / 12%);
+  --environment-opacity: 1;
+  --environment-duration: 58s;
+  --card-radius: 22px;
+  --card-gap: 22px;
+  --motion-hover: 220ms;
+  --motion-panel: 260ms;
+}
+
+.app-shell[data-theme='vision'],
+.app-shell[data-theme='ai'] {
+  --color-scheme: dark;
+  --page-bg: #15242d;
+  --page-bg-secondary: #1c303a;
+  --surface: rgb(202 227 232 / 4.5%);
+  --surface-elevated: rgb(207 230 235 / 7.5%);
+  --surface-hover: rgb(213 234 238 / 10%);
+  --surface-subtle: rgb(198 225 230 / 3.5%);
+  --surface-quiet: rgb(10 25 33 / 18%);
+  --field-bg: rgb(41 63 73 / 70%);
+  --field-hover: rgb(50 73 84 / 78%);
+  --field-border: rgb(201 228 233 / 22%);
+  --border-soft: rgb(201 228 233 / 7%);
+  --border: rgb(201 228 233 / 11%);
+  --border-strong: rgb(195 222 232 / 18%);
+  --border-focus: #b8d7df;
+  --line-quiet: rgb(192 225 231 / 8%);
+  --line-emphasis: rgb(187 225 231 / 24%);
+  --text-primary: #eff6f7;
+  --text-secondary: #b4c7cb;
+  --text-muted: #9bafb5;
+  --accent: #9fc8d2;
+  --accent-hover: #b8d7df;
+  --accent-strong: #b8d7df;
+  --accent-secondary: #aaa8d2;
+  --accent-soft: rgb(159 200 210 / 12%);
+  --accent-glow: rgb(159 211 220 / 28%);
+  --accent-violet-soft: rgb(163 151 205 / 12%);
+  --button-primary-text: #13252d;
+  --focus-ring: var(--border-focus);
+  --panel-blur: 12px;
+  --panel-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  --panel-background: linear-gradient(145deg, rgb(213 233 237 / 5.5%), rgb(164 190 200 / 2.5%));
+  --control-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  --drawer-shadow: -12px 0 36px rgb(0 0 0 / 24%);
+  --dialog-backdrop: rgb(7 11 13 / 68%);
+  --dialog-shadow: 0 24px 70px rgb(0 0 0 / 38%);
+  --environment-background: transparent;
+  --environment-light: rgb(158 210 218 / 17%);
+  --environment-mist: rgb(126 181 192 / 13%);
+  --environment-sunlight: rgb(162 146 205 / 9%);
+  --environment-edge: rgb(4 15 23 / 26%);
+  --environment-opacity: 1;
+  --environment-duration: 56s;
+  --card-radius: 20px;
+  --card-gap: 22px;
+  --motion-hover: 200ms;
+  --motion-panel: 270ms;
+}
+
+.app-shell[data-theme='vision'] {
+  --page-bg: #1b4264;
+  --page-bg-secondary: #123a5a;
+  --surface: rgb(219 233 246 / 11%);
+  --surface-elevated: rgb(226 238 248 / 16%);
+  --surface-hover: rgb(230 241 250 / 20%);
+  --surface-subtle: rgb(220 235 247 / 8%);
+  --surface-quiet: rgb(19 57 84 / 28%);
+  --field-bg: rgb(217 232 244 / 10%);
+  --field-hover: rgb(227 239 249 / 15%);
+  --field-border: rgb(235 244 252 / 32%);
+  --border-soft: rgb(235 244 252 / 17%);
+  --border: rgb(235 244 252 / 24%);
+  --border-strong: rgb(239 247 253 / 36%);
+  --border-focus: #b8c9ff;
+  --line-quiet: rgb(232 242 250 / 15%);
+  --line-emphasis: rgb(239 247 253 / 32%);
+  --text-primary: #f5f8fc;
+  --text-secondary: #d8e3ee;
+  --text-muted: #adbed0;
+  --accent: #8ca8f2;
+  --accent-hover: #a896ed;
+  --accent-strong: #b7c9ff;
+  --accent-secondary: #b099ec;
+  --accent-soft: rgb(137 159 236 / 24%);
+  --accent-glow: rgb(160 178 255 / 30%);
+  --accent-violet-soft: rgb(176 153 236 / 18%);
+  --button-primary-text: #f8faff;
+  --panel-blur: 14px;
+  --panel-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 18px 42px rgb(17 42 67 / 10%);
+  --panel-background: linear-gradient(145deg, rgb(225 238 248 / 12%), rgb(191 215 235 / 7%));
+  --sidebar-base: #103957;
+  --sidebar-overlay: rgb(7 42 68 / 75%);
+  --environment-edge: rgb(13 44 69 / 34%);
+  --environment-opacity: 1;
+}
+
+.app-shell[data-theme='ai'] {
+  --page-bg: #183f62;
+  --page-bg-secondary: #123653;
+  --surface: rgb(215 231 248 / 10%);
+  --surface-elevated: rgb(223 236 250 / 15%);
+  --surface-hover: rgb(229 240 252 / 19%);
+  --surface-subtle: rgb(211 228 246 / 7%);
+  --surface-quiet: rgb(20 54 82 / 36%);
+  --field-bg: rgb(33 70 105 / 58%);
+  --field-hover: rgb(48 84 121 / 66%);
+  --field-border: rgb(230 240 255 / 30%);
+  --border-soft: rgb(231 240 255 / 14%);
+  --border: rgb(231 240 255 / 22%);
+  --border-strong: rgb(236 244 255 / 36%);
+  --accent: #8faff3;
+  --accent-hover: #a7c0f7;
+  --accent-strong: #a7c0f7;
+  --accent-secondary: #b0a4dc;
+  --accent-soft: rgb(143 175 243 / 14%);
+  --accent-glow: rgb(151 142 255 / 30%);
+  --accent-glow-strong: rgb(167 151 255 / 52%);
+  --text-primary: #f5f8ff;
+  --text-secondary: #d4deed;
+  --text-muted: #a8b8cc;
+  --border-focus: #a7c0f7;
+  --focus-ring: var(--border-focus);
+  --panel-blur: 16px;
+  --panel-background: linear-gradient(145deg, rgb(221 234 250 / 12%), rgb(167 195 224 / 7%));
+  --panel-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 22px 54px rgb(8 30 54 / 14%);
+  --sidebar-base: #123a59;
+  --sidebar-overlay: rgb(8 42 67 / 78%);
+  --environment-light: rgb(126 166 238 / 14%);
+  --environment-edge: rgb(9 37 62 / 34%);
+  --ai-glow: 0 0 22px var(--accent-glow), 0 0 46px rgb(126 166 238 / 16%);
+  --ai-glow-active:
+    0 0 5px rgb(255 255 255 / 72%), 0 0 24px var(--accent-glow-strong), 0 0 48px var(--accent-glow);
+}
+
+.app-shell[data-theme='system'],
+[data-surface='system'] {
+  --color-scheme: dark;
+  --page-bg: #14191d;
+  --page-bg-secondary: #191f24;
+  --surface: #1c2328;
+  --surface-elevated: #212a30;
+  --surface-hover: #263138;
+  --field-bg: #252e34;
+  --field-hover: #2a353c;
+  --field-border: rgb(207 220 226 / 30%);
+  --border-soft: rgb(207 220 226 / 12%);
+  --border: rgb(207 220 226 / 17%);
+  --border-strong: rgb(207 220 226 / 25%);
+  --border-focus: #9ab9c2;
+  --text-primary: #e8edef;
+  --text-secondary: #aab4b9;
+  --text-muted: #929fa5;
+  --accent: #83aab6;
+  --accent-hover: #9ab9c2;
+  --accent-strong: #9ab9c2;
+  --accent-soft: rgb(131 170 182 / 12%);
+  --button-primary-text: #14191d;
+  --focus-ring: var(--border-focus);
+  --panel-blur: 2px;
+  --panel-shadow: 0 8px 28px rgb(0 0 0 / 12%);
+  --panel-background: rgb(29 36 41 / 94%);
+  --control-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
+  --drawer-shadow: -12px 0 36px rgb(0 0 0 / 24%);
+  --dialog-backdrop: rgb(7 11 13 / 68%);
+  --dialog-shadow: 0 24px 70px rgb(0 0 0 / 38%);
+  --environment-background: transparent;
+  --environment-light: transparent;
+  --environment-mist: transparent;
+  --environment-sunlight: transparent;
+  --environment-edge: transparent;
+  --environment-opacity: 0;
+  --environment-duration: 60s;
+  --card-radius: 16px;
+  --card-gap: 14px;
+  --motion-hover: 180ms;
+  --motion-panel: 200ms;
+}

@@ -1,0 +1,68 @@
+.app-shell:not([data-theme='today'])
+  :is(
+    .status-panel,
+    .management-list,
+    .inbox-workspace,
+    .note-composer,
+    .capture-panel,
+    .planning-form,
+    .timeline-panel,
+    .task-panel,
+    .goal-node,
+    .routine-card,
+    .notification-row
+  ) {
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--card-radius);
+  color: var(--text-primary);
+  background: var(--panel-background);
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(var(--panel-blur)) saturate(115%);
+}
+
+.app-shell:not([data-theme='today'])
+  :is(
+    .rich-text-editor,
+    .note-preview,
+    .pipeline > div,
+    .planning-kanban > section,
+    .planning-kanban article
+  ) {
+  border-color: var(--border-soft);
+  border-radius: var(--radius-card-small);
+  color: var(--text-primary);
+  background: var(--surface);
+}
+
+.app-shell:not([data-theme='today']) .planning-kanban article {
+  border-color: var(--border);
+  background: var(--surface-elevated);
+}
+
+.app-shell:not([data-theme='today'])
+  :is(.settings-section, .compact-form, .project-detail > section) {
+  border-color: var(--border-soft);
+}
+
+.app-shell:not([data-theme='today']) :is(.status-panel__label, .settings-section p, .field-hint) {
+  color: var(--text-secondary);
+}
+
+.app-shell:not([data-theme='today']) .status-panel__value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.app-shell:not([data-theme='today']) .detail-panel {
+  z-index: var(--layer-drawer);
+  border-left: var(--border-width) solid var(--border);
+  border-radius: var(--radius-modal) 0 0 var(--radius-modal);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+  box-shadow: var(--drawer-shadow);
+  backdrop-filter: blur(var(--panel-blur));
+}
+
+.app-shell:not([data-theme='today']) .detail-panel__close {
+  color: var(--text-secondary);
+}

@@ -1,0 +1,31 @@
+.app-shell:not([data-theme='today']) :is(a, button, input, select, textarea, summary) {
+  transition-duration: var(--motion-hover);
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.app-shell:not([data-theme='today']) :is(.detail-panel, [role='dialog']) {
+  transition-duration: var(--motion-panel);
+}
+
+.app-shell[data-theme='life'] :is(.button, .sidebar__link):hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.005);
+}
+
+.app-shell:not([data-theme='today']) :is(.button, .sidebar__link):active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell,
+  .app-shell .content,
+  .app-shell .sidebar,
+  .app-shell:not([data-theme='today']) *,
+  .app-shell:not([data-theme='today']) *::before,
+  .app-shell:not([data-theme='today']) *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@life-assistant/file-storage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@life-assistant/database": "workspace:*",
+    "@life-assistant/kernel": "workspace:*",
+    "adm-zip": "^0.6.0",
+    "ulid": "^3.0.2"
+  },
+  "devDependencies": {
+    "@life-assistant/test-support": "workspace:*",
+    "@types/adm-zip": "^0.5.8"
+  }
+}

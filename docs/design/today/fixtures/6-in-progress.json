@@ -1,0 +1,110 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T07:00:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-15T00:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-standup",
+      "targetEntityId": "event-standup",
+      "title": "晨会",
+      "blockType": "EVENT",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T01:30:00.000Z",
+      "source": "MANUAL",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-focus",
+      "targetEntityId": "task-focus",
+      "title": "开发今日页",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T02:00:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-lunch",
+      "targetEntityId": null,
+      "title": "午餐",
+      "blockType": "REST",
+      "area": "LIFE",
+      "startAt": "2026-08-15T05:00:00.000Z",
+      "endAt": "2026-08-15T05:30:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-gym",
+      "targetEntityId": "task-gym",
+      "title": "健身",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T05:30:00.000Z",
+      "endAt": "2026-08-15T07:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [
+    {
+      "id": "blk-standup",
+      "entityId": "event-standup",
+      "title": "晨会",
+      "kind": "EVENT",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T01:30:00.000Z",
+      "priority": "NORMAL"
+    },
+    {
+      "id": "blk-focus",
+      "entityId": "task-focus",
+      "title": "开发今日页",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T02:00:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-gym",
+      "entityId": "task-gym",
+      "title": "健身",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T05:30:00.000Z",
+      "endAt": "2026-08-15T07:00:00.000Z",
+      "priority": "NORMAL"
+    }
+  ],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 480, "workMinutes": 300, "lifeMinutes": 90, "freeMinutes": 570 },
+  "pressure": {
+    "score": 35,
+    "level": "COMFORTABLE",
+    "algorithmVersion": "pressure-v1",
+    "factors": [{ "code": "MODERATE_LOAD", "points": 35, "message": "节奏紧凑，仍有回旋余地" }]
+  },
+  "notifications": [],
+  "suggestions": []
+}

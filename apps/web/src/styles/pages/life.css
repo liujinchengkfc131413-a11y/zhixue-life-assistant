@@ -1,0 +1,518 @@
+.app-shell[data-theme='life'] .content {
+  background:
+    radial-gradient(ellipse 58% 32% at 20% 0%, var(--surface-hover), transparent 76%),
+    var(--page-bg);
+}
+
+.app-shell[data-theme='life'] {
+  background: var(--sidebar-base);
+}
+
+.app-shell[data-theme='life'] .life-page {
+  width: min(100%, 1400px);
+  max-width: none;
+  padding-bottom: 80px;
+}
+
+.app-shell[data-theme='life'] .life-page .page__header {
+  max-width: 760px;
+}
+
+.app-shell[data-theme='life'] .life-page .page__header > p:last-child {
+  max-width: 680px;
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] .work-tabs {
+  gap: var(--space-2);
+  width: fit-content;
+  margin: var(--space-8) 0 var(--space-8);
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: calc(var(--radius-control) + var(--space-2));
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(var(--panel-blur));
+  box-shadow: var(--panel-shadow);
+}
+
+.app-shell[data-theme='life'] .work-tabs__link {
+  padding: 10px 15px;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  transition:
+    color var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    background-color var(--motion-hover) ease,
+    transform var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='life'] .work-tabs__link:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+  transform: scale(1.005);
+}
+
+.app-shell[data-theme='life'] .work-tabs__link:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.app-shell[data-theme='life'] .work-tabs__link[data-selected='true'] {
+  border-color: var(--border-strong);
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+  box-shadow: none;
+}
+
+.app-shell[data-theme='life'] .work-toolbar {
+  min-height: 48px;
+  margin-bottom: var(--space-5);
+  padding: 0 var(--space-2);
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] .range-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.app-shell[data-theme='life'] .range-control .button[data-selected='true'] {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.app-shell[data-theme='life'] .life-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--border-width);
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--card-radius);
+  background: color-mix(in srgb, var(--border-soft) 72%, transparent);
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(var(--panel-blur));
+}
+
+.app-shell[data-theme='life'] .life-highlights article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+  border: 0;
+  background: var(--panel-background);
+}
+
+.app-shell[data-theme='life'] .life-highlights span {
+  color: var(--text-secondary);
+  font-size: var(--font-size-secondary);
+}
+
+.app-shell[data-theme='life'] .life-highlights strong {
+  color: var(--text-primary);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.app-shell[data-theme='life'] .life-highlights small {
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] .life-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--card-gap);
+  margin-top: var(--card-gap);
+}
+
+.app-shell[data-theme='life'] .life-overview-card {
+  --local-accent: var(--accent);
+
+  min-width: 0;
+  min-height: 220px;
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--panel-background);
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(var(--panel-blur)) saturate(108%);
+  transition:
+    filter var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    transform var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(2),
+.app-shell[data-theme='life'] .life-page[data-life-section='diet'] {
+  --local-accent: var(--accent-diet);
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(3),
+.app-shell[data-theme='life'] .life-page[data-life-section='fitness'] {
+  --local-accent: var(--accent-fitness);
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(4),
+.app-shell[data-theme='life'] .life-page[data-life-section='entertainment'] {
+  --local-accent: var(--accent-entertainment);
+}
+
+.app-shell[data-theme='life'] .life-page[data-life-section='shopping'] {
+  --local-accent: var(--accent-shopping);
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(1) {
+  grid-column: span 7;
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(3) {
+  grid-column: span 4;
+}
+
+.app-shell[data-theme='life'] .life-overview-card:nth-child(4) {
+  grid-column: span 8;
+}
+
+.app-shell[data-theme='life'] .life-overview-card:hover {
+  border-color: color-mix(in srgb, var(--local-accent) 36%, var(--border));
+  filter: brightness(1.025);
+  transform: scale(1.005);
+}
+
+.app-shell[data-theme='life'] .life-overview-card h2,
+.app-shell[data-theme='life'] .work-split h2 {
+  color: var(--text-primary);
+  font-size: var(--font-size-section-title);
+  font-weight: 600;
+}
+
+.app-shell[data-theme='life'] .life-overview-card a {
+  color: var(--local-accent);
+}
+
+.app-shell[data-theme='life'] .life-overview-card .work-module__number {
+  margin: var(--space-8) 0 var(--space-6);
+  color: var(--text-primary);
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.app-shell[data-theme='life'] .life-overview-card dl {
+  gap: 0;
+}
+
+.app-shell[data-theme='life'] .life-overview-card dl div {
+  padding: var(--space-3) 0;
+  border-top: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='life'] .life-overview-card dt {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] .life-overview-card dd {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.app-shell[data-theme='life'] .work-split {
+  grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+  gap: var(--card-gap);
+  align-items: start;
+}
+
+.app-shell[data-theme='life'] .work-split > section,
+.app-shell[data-theme='life'] .work-editor {
+  min-width: 0;
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--panel-background);
+  box-shadow: var(--panel-shadow);
+  backdrop-filter: blur(var(--panel-blur)) saturate(108%);
+}
+
+.app-shell[data-theme='life'] .work-editor {
+  border-left: var(--border-width) solid var(--border);
+  border-color: var(--border-strong);
+  background: var(--panel-background-elevated);
+  box-shadow: var(--panel-shadow-elevated);
+}
+
+.app-shell[data-theme='life'] .section-heading {
+  min-height: 36px;
+}
+
+.app-shell[data-theme='life'] .section-heading > span {
+  color: var(--text-muted);
+  font-size: var(--font-size-secondary);
+}
+
+.app-shell[data-theme='life'] .shopping-list {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  border: 0;
+}
+
+.app-shell[data-theme='life'] .shopping-list button,
+.app-shell[data-theme='life'] .shopping-list .diet-row {
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-card-small);
+  color: var(--text-primary);
+  background: var(--surface);
+  transition:
+    filter var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    background-color var(--motion-hover) ease,
+    transform var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='life'] .shopping-list button:hover {
+  border-color: var(--border);
+  background: var(--surface-hover);
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+}
+
+.app-shell[data-theme='life'] .shopping-list button[data-selected='true'] {
+  padding-inline: var(--space-4);
+  border-color: color-mix(in srgb, var(--local-accent) 48%, var(--border));
+  background: color-mix(in srgb, var(--local-accent) 12%, var(--surface-elevated));
+  box-shadow: none;
+}
+
+.app-shell[data-theme='life'] .life-page[data-life-section='diet'] .diet-row {
+  border-color: color-mix(in srgb, var(--local-accent) 20%, var(--border-soft));
+}
+
+.app-shell[data-theme='life'] .life-page[data-life-section='fitness'] .fitness-session-list,
+.app-shell[data-theme='life'] .life-page[data-life-section='entertainment'] .purchase-history {
+  border-top-color: color-mix(in srgb, var(--local-accent) 30%, var(--border-soft));
+}
+
+.app-shell[data-theme='life'] .shopping-list small,
+.app-shell[data-theme='life'] .work-list small {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] .diet-row .button {
+  border-color: var(--border);
+  background: var(--surface-elevated);
+}
+
+.app-shell[data-theme='life'] .inline-work-form {
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='life'] .compact-form {
+  gap: var(--space-3);
+  padding: var(--space-5) 0;
+  border: 0;
+  border-top: var(--border-width) solid var(--border-soft);
+  border-radius: 0;
+  background: transparent;
+}
+
+.app-shell[data-theme='life'] .compact-form--flush {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.app-shell[data-theme='life'] .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.app-shell[data-theme='life'] .inline-work-form .form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.app-shell[data-theme='life'] .form-grid > * {
+  min-width: 0;
+  width: 100%;
+}
+
+.app-shell[data-theme='life'] .purchase-history {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='life'] .work-list li {
+  align-items: center;
+  padding: var(--space-3) 0;
+  border-bottom: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='life'] :is(.fitness-session-list, .purchase-history .work-list) strong {
+  color: var(--text-primary);
+}
+
+.app-shell[data-theme='life'] .empty-copy {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='life'] :is(.life-overview-card, .shopping-list button, .work-tabs__link) {
+  transition-duration: var(--motion-hover);
+}
+
+@media (max-width: 1120px) {
+  .app-shell[data-theme='life'] .life-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-shell[data-theme='life'] .life-overview-card:nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .app-shell[data-theme='life'] .work-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-shell[data-theme='life'] .work-editor {
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .app-shell[data-theme='life'] .work-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1280px) {
+  .app-shell[data-theme='life'] .life-page {
+    padding-bottom: var(--space-12);
+  }
+
+  .app-shell[data-theme='life'] .life-overview-grid {
+    gap: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell[data-theme='life'] :is(.work-tabs__link, .life-overview-card, .shopping-list button) {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* V2 收尾 P5：浏览态优先，创建与管理表单进入统一右侧 Soft Fog 面板。 */
+.app-shell[data-theme='life'] .life-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.app-shell[data-theme='life'] .life-page__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: var(--space-3);
+}
+
+.app-shell[data-theme='life']
+  .life-page[data-life-mode='browse']
+  :is(.inline-work-form, .work-editor),
+.app-shell[data-theme='life'] .life-page[data-life-mode='create'] .work-editor,
+.app-shell[data-theme='life'] .life-page[data-life-mode='manage'] .inline-work-form {
+  display: none;
+}
+
+.app-shell[data-theme='life'] .life-page[data-life-mode='create'] .work-split > section {
+  backdrop-filter: none;
+}
+
+.app-shell[data-theme='life'] .life-page[data-life-mode='create'] .inline-work-form,
+.app-shell[data-theme='life'] .life-page[data-life-mode='manage'] .work-editor {
+  position: fixed;
+  z-index: 82;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: min(460px, calc(100vw - 32px));
+  height: 100vh;
+  max-height: none;
+  overflow-y: auto;
+  align-content: start;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 84px 28px 32px;
+  border: 0;
+  border-left: var(--border-width) solid var(--border);
+  border-radius: 22px 0 0 22px;
+  background: color-mix(in srgb, var(--surface-elevated) 94%, transparent);
+  box-shadow: -18px 0 48px rgb(71 91 75 / 14%);
+  backdrop-filter: blur(18px) saturate(1.06);
+}
+
+.app-shell[data-theme='life']
+  .life-page[data-life-mode='create']
+  .inline-work-form
+  > .button:last-child,
+.app-shell[data-theme='life'] .life-page[data-life-mode='manage'] .work-editor .form-actions {
+  position: sticky;
+  bottom: 0;
+  padding-block: var(--space-3);
+  background: color-mix(in srgb, var(--surface-elevated) 94%, transparent);
+}
+
+.app-shell[data-theme='life'] .life-drawer__scrim {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: var(--overlay-soft);
+  cursor: default;
+  backdrop-filter: blur(2px);
+}
+
+.app-shell[data-theme='life'] .life-drawer__chrome {
+  position: fixed;
+  z-index: 83;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(460px, calc(100vw - 32px));
+  min-height: 64px;
+  padding: 12px 28px;
+  border-bottom: var(--border-width) solid var(--border-soft);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--surface-elevated) 96%, transparent);
+  border-radius: 22px 0 0;
+}
+
+.app-shell[data-theme='life'] .life-drawer__chrome > span {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+@media (max-width: 760px) {
+  .app-shell[data-theme='life'] .life-page__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .app-shell[data-theme='life'] .life-page__actions > * {
+    flex: 1;
+  }
+}

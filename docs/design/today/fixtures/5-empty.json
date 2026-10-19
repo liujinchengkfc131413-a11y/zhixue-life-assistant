@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T05:00:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-15T00:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 480, "workMinutes": 0, "lifeMinutes": 0, "freeMinutes": 960 },
+  "pressure": {
+    "score": 0,
+    "level": "RELAXED",
+    "algorithmVersion": "pressure-v1",
+    "factors": []
+  },
+  "notifications": [],
+  "suggestions": []
+}

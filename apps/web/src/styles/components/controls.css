@@ -1,0 +1,122 @@
+.app-shell:not([data-theme='today'])
+  :is(button, a, input, select, textarea, summary):focus-visible {
+  outline: var(--focus-width) solid var(--border-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.app-shell:not([data-theme='today']) .button {
+  min-height: var(--control-height);
+  padding: 8px 14px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+  box-shadow: var(--control-shadow);
+}
+
+.app-shell:not([data-theme='today']) .button:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+
+.app-shell:not([data-theme='today']) .button:active:not(:disabled) {
+  transform: translateY(0) scale(0.99);
+}
+
+.app-shell:not([data-theme='today']) .button--primary,
+.app-shell:not([data-theme='today']) .button[data-selected='true'] {
+  border-color: var(--accent);
+  color: var(--button-primary-text);
+  background: var(--accent);
+}
+
+.app-shell:not([data-theme='today']) .button--primary:hover:not(:disabled),
+.app-shell:not([data-theme='today']) .button[data-selected='true']:hover:not(:disabled) {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.app-shell:not([data-theme='today']) .button--ghost {
+  border-color: transparent;
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.app-shell:not([data-theme='today']) .button--ghost:hover:not(:disabled) {
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+
+.app-shell:not([data-theme='today']) .button--danger {
+  border-color: color-mix(in srgb, var(--semantic-danger) 50%, transparent);
+  color: var(--semantic-danger);
+  background: color-mix(in srgb, var(--semantic-danger) 10%, transparent);
+}
+
+.app-shell:not([data-theme='today']) .button--danger:hover:not(:disabled) {
+  border-color: var(--semantic-danger);
+  background: color-mix(in srgb, var(--semantic-danger) 16%, transparent);
+}
+
+.app-shell:not([data-theme='today']) :is(button, input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.app-shell:not([data-theme='today']) :is(button, input, select, textarea)[aria-invalid='true'] {
+  outline-color: var(--semantic-danger);
+}
+
+.app-shell:not([data-theme='today']) :is(.work-tabs, .segmented, .segmented-control) {
+  border-color: var(--border-soft);
+}
+
+.app-shell:not([data-theme='today'])
+  :is(
+    .work-tabs__link,
+    .segmented button,
+    .segmented-control button,
+    .search-dialog__filters button
+  ) {
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.app-shell:not([data-theme='today'])
+  :is(
+    .work-tabs__link[data-selected='true'],
+    .segmented button[data-selected='true'],
+    .segmented-control button[data-selected='true'],
+    .search-dialog__filters button[data-selected='true']
+  ) {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.app-shell:not([data-theme='today']) .work-tabs__link[data-selected='true'] {
+  border-bottom-color: var(--accent);
+  border-radius: 0;
+}
+
+.app-shell:not([data-theme='today']) :is(.pill, .badge) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: var(--border-width) solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--surface-elevated);
+  font-size: var(--font-size-meta);
+}
+
+.app-shell:not([data-theme='today']) .text-button {
+  color: var(--accent);
+}
+
+.app-shell:not([data-theme='today']) .text-button--danger {
+  color: var(--semantic-danger);
+}

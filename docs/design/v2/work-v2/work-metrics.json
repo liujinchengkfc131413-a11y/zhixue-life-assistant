@@ -1,0 +1,150 @@
+{
+  "fixture": "D:\\Documents\\知雪的生活助手\\test-results\\v2-work\\data",
+  "dpr": 1,
+  "entries": [
+    {
+      "route": "/work",
+      "viewport": "1536x1024",
+      "horizontalOverflow": 0,
+      "pageWidth": 1073,
+      "pageHeight": 993,
+      "atmosphereAnimation": "none",
+      "screenshot": "overview-1536x1024.png"
+    },
+    {
+      "route": "/work/self-media",
+      "viewport": "1536x1024",
+      "horizontalOverflow": 0,
+      "pageWidth": 1073,
+      "pageHeight": 1576,
+      "atmosphereAnimation": "none",
+      "screenshot": "self-media-1536x1024.png"
+    },
+    {
+      "route": "/work/development",
+      "viewport": "1536x1024",
+      "horizontalOverflow": 0,
+      "pageWidth": 1073,
+      "pageHeight": 1564,
+      "atmosphereAnimation": "none",
+      "screenshot": "development-1536x1024.png"
+    },
+    {
+      "route": "/work/learning",
+      "viewport": "1536x1024",
+      "horizontalOverflow": 0,
+      "pageWidth": 1073,
+      "pageHeight": 1589,
+      "atmosphereAnimation": "none",
+      "screenshot": "learning-1536x1024.png"
+    },
+    {
+      "route": "/work",
+      "viewport": "1366x768",
+      "horizontalOverflow": 0,
+      "pageWidth": 927,
+      "pageHeight": 993,
+      "atmosphereAnimation": "none",
+      "screenshot": "overview-1366x768.png"
+    },
+    {
+      "route": "/work/self-media",
+      "viewport": "1366x768",
+      "horizontalOverflow": 0,
+      "pageWidth": 927,
+      "pageHeight": 1618,
+      "atmosphereAnimation": "none",
+      "screenshot": "self-media-1366x768.png"
+    },
+    {
+      "route": "/work/development",
+      "viewport": "1366x768",
+      "horizontalOverflow": 0,
+      "pageWidth": 927,
+      "pageHeight": 1608,
+      "atmosphereAnimation": "none",
+      "screenshot": "development-1366x768.png"
+    },
+    {
+      "route": "/work/learning",
+      "viewport": "1366x768",
+      "horizontalOverflow": 0,
+      "pageWidth": 927,
+      "pageHeight": 1631,
+      "atmosphereAnimation": "none",
+      "screenshot": "learning-1366x768.png"
+    },
+    {
+      "route": "/work",
+      "viewport": "1920x1080",
+      "horizontalOverflow": 0,
+      "pageWidth": 1440,
+      "pageHeight": 993,
+      "atmosphereAnimation": "none",
+      "screenshot": "overview-1920x1080.png"
+    },
+    {
+      "route": "/work/self-media",
+      "viewport": "1920x1080",
+      "horizontalOverflow": 0,
+      "pageWidth": 1440,
+      "pageHeight": 1618,
+      "atmosphereAnimation": "none",
+      "screenshot": "self-media-1920x1080.png"
+    },
+    {
+      "route": "/work/development",
+      "viewport": "1920x1080",
+      "horizontalOverflow": 0,
+      "pageWidth": 1440,
+      "pageHeight": 1606,
+      "atmosphereAnimation": "none",
+      "screenshot": "development-1920x1080.png"
+    },
+    {
+      "route": "/work/learning",
+      "viewport": "1920x1080",
+      "horizontalOverflow": 0,
+      "pageWidth": 1440,
+      "pageHeight": 1631,
+      "atmosphereAnimation": "none",
+      "screenshot": "learning-1920x1080.png"
+    },
+    {
+      "route": "/work",
+      "viewport": "1100x900",
+      "horizontalOverflow": 0,
+      "pageWidth": 698,
+      "pageHeight": 1120,
+      "atmosphereAnimation": "none",
+      "screenshot": "overview-1100x900.png"
+    },
+    {
+      "route": "/work/self-media",
+      "viewport": "1100x900",
+      "horizontalOverflow": 0,
+      "pageWidth": 698,
+      "pageHeight": 2302,
+      "atmosphereAnimation": "none",
+      "screenshot": "self-media-1100x900.png"
+    },
+    {
+      "route": "/work/development",
+      "viewport": "1100x900",
+      "horizontalOverflow": 0,
+      "pageWidth": 698,
+      "pageHeight": 2014,
+      "atmosphereAnimation": "none",
+      "screenshot": "development-1100x900.png"
+    },
+    {
+      "route": "/work/learning",
+      "viewport": "1100x900",
+      "horizontalOverflow": 0,
+      "pageWidth": 698,
+      "pageHeight": 2075,
+      "atmosphereAnimation": "none",
+      "screenshot": "learning-1100x900.png"
+    }
+  ]
+}

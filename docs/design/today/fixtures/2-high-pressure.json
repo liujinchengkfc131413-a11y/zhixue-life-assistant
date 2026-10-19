@@ -1,0 +1,180 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T08:00:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-14T22:30:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-a",
+      "targetEntityId": "task-a",
+      "title": "紧急修复发布问题",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T00:00:00.000Z",
+      "endAt": "2026-08-15T01:30:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-b",
+      "targetEntityId": "task-b",
+      "title": "写验收报告",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:30:00.000Z",
+      "endAt": "2026-08-15T03:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-c",
+      "targetEntityId": "task-c",
+      "title": "开发周会材料",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T03:00:00.000Z",
+      "endAt": "2026-08-15T04:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-lunch",
+      "targetEntityId": null,
+      "title": "午餐",
+      "blockType": "REST",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:00:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-d",
+      "targetEntityId": "task-d",
+      "title": "客户紧急需求",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T05:00:00.000Z",
+      "endAt": "2026-08-15T07:30:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-e",
+      "targetEntityId": "task-e",
+      "title": "排查线上问题",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:30:00.000Z",
+      "endAt": "2026-08-15T10:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-f",
+      "targetEntityId": "task-f",
+      "title": "补充测试用例",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T10:00:00.000Z",
+      "endAt": "2026-08-15T11:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [
+    {
+      "id": "blk-a",
+      "entityId": "task-a",
+      "title": "紧急修复发布问题",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T00:00:00.000Z",
+      "endAt": "2026-08-15T01:30:00.000Z",
+      "priority": "URGENT"
+    },
+    {
+      "id": "blk-b",
+      "entityId": "task-b",
+      "title": "写验收报告",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:30:00.000Z",
+      "endAt": "2026-08-15T03:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-c",
+      "entityId": "task-c",
+      "title": "开发周会材料",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T03:00:00.000Z",
+      "endAt": "2026-08-15T04:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-d",
+      "entityId": "task-d",
+      "title": "客户紧急需求",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T05:00:00.000Z",
+      "endAt": "2026-08-15T07:30:00.000Z",
+      "priority": "URGENT"
+    },
+    {
+      "id": "blk-e",
+      "entityId": "task-e",
+      "title": "排查线上问题",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:30:00.000Z",
+      "endAt": "2026-08-15T10:00:00.000Z",
+      "priority": "URGENT"
+    },
+    {
+      "id": "blk-f",
+      "entityId": "task-f",
+      "title": "补充测试用例",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T10:00:00.000Z",
+      "endAt": "2026-08-15T11:00:00.000Z",
+      "priority": "HIGH"
+    }
+  ],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 390, "workMinutes": 600, "lifeMinutes": 60, "freeMinutes": 390 },
+  "pressure": {
+    "score": 88,
+    "level": "HIGH_PRESSURE",
+    "algorithmVersion": "pressure-v1",
+    "factors": [
+      { "code": "URGENT_TASKS", "points": 40, "message": "紧急任务 3 项" },
+      { "code": "LONG_WORK_RUN", "points": 28, "message": "连续工作 180 分钟" },
+      { "code": "LOW_BUFFER", "points": 20, "message": "可用缓冲仅 60 分钟" }
+    ]
+  },
+  "notifications": [],
+  "suggestions": []
+}

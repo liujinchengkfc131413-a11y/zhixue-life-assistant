@@ -1,0 +1,33 @@
+{
+  "name": "@life-assistant/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start:test": "cross-env LIFE_ASSISTANT_PORT=43120 node dist/main.cjs",
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.2",
+    "@fastify/multipart": "^10.1.0",
+    "@fastify/static": "^10.1.3",
+    "@life-assistant/application": "workspace:*",
+    "@life-assistant/ai-adapters": "workspace:*",
+    "@life-assistant/contracts": "workspace:*",
+    "@life-assistant/database": "workspace:*",
+    "@life-assistant/file-storage": "workspace:*",
+    "@life-assistant/kernel": "workspace:*",
+    "@life-assistant/scheduler": "workspace:*",
+    "adm-zip": "0.5.16",
+    "better-sqlite3": "13.0.3",
+    "fastify": "^5.11.3",
+    "fastify-type-provider-zod": "^7.0.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@life-assistant/test-support": "workspace:*",
+    "@types/adm-zip": "^0.5.8"
+  }
+}

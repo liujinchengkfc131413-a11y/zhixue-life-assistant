@@ -1,0 +1,24 @@
+{
+  "name": "@life-assistant/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@life-assistant/domain": "workspace:*",
+    "@life-assistant/kernel": "workspace:*",
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.2",
+    "ulid": "^3.0.2"
+  },
+  "devDependencies": {
+    "@life-assistant/test-support": "workspace:*",
+    "@types/better-sqlite3": "^9.6.0"
+  }
+}

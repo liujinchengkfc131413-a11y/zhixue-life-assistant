@@ -1,0 +1,62 @@
+[
+  {
+    "route": "/",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 900,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 1301,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 1301,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/plans-goals",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 1385,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/assistant",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 900,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/inbox",
+    "viewport": {
+      "width": 1100,
+      "height": 900
+    },
+    "scrollWidth": 1100,
+    "scrollHeight": 900,
+    "horizontalOverflow": 0
+  }
+]

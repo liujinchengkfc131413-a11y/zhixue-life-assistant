@@ -1,0 +1,146 @@
+[
+  {
+    "width": 1366,
+    "height": 768,
+    "page": "inbox",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "page": "data",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "page": "reminders",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "page": "settings",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1448,
+    "height": 1086,
+    "page": "inbox",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1448,
+    "height": 1086,
+    "page": "data",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1448,
+    "height": 1086,
+    "page": "reminders",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1448,
+    "height": 1086,
+    "page": "settings",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1536,
+    "height": 1024,
+    "page": "inbox",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1536,
+    "height": 1024,
+    "page": "data",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1536,
+    "height": 1024,
+    "page": "reminders",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1536,
+    "height": 1024,
+    "page": "settings",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "page": "inbox",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "page": "data",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "page": "reminders",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "page": "settings",
+    "theme": "system",
+    "overflow": 0,
+    "environmentLayer": false,
+    "environmentOpacity": "0"
+  }
+]

@@ -1,0 +1,490 @@
+.app-shell[data-theme='work'] {
+  background: var(--sidebar-base);
+}
+
+.app-shell[data-theme='work'] .content {
+  background: var(--page-bg);
+}
+
+.app-shell[data-theme='work'] .work-page {
+  --module-accent: var(--accent);
+  width: min(100%, 1440px);
+  max-width: none;
+  padding-bottom: 72px;
+}
+
+.app-shell[data-theme='work'] .work-page[data-work-section='self-media'] {
+  --module-accent: var(--accent-cyan);
+}
+
+.app-shell[data-theme='work'] .work-page[data-work-section='development'] {
+  --module-accent: var(--accent-steel);
+}
+
+.app-shell[data-theme='work'] .work-page[data-work-section='learning'] {
+  --module-accent: var(--accent-violet);
+}
+
+.app-shell[data-theme='work'] .work-page .page__header {
+  max-width: 760px;
+}
+
+.app-shell[data-theme='work'] .work-page .page__header > p:last-child {
+  max-width: 680px;
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] .work-tabs {
+  gap: var(--space-1);
+  width: fit-content;
+  margin: var(--space-8) 0 var(--space-6);
+  padding: var(--space-1);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: calc(var(--radius-control) + var(--space-1));
+  background: var(--panel-background);
+  backdrop-filter: blur(var(--panel-blur)) saturate(112%);
+  box-shadow: inset 0 1px 0 var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-tabs__link {
+  padding: 9px 14px;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  transition:
+    color var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    background-color var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='work'] .work-tabs__link:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.app-shell[data-theme='work'] .work-tabs__link[data-selected='true'] {
+  border-color: color-mix(in srgb, var(--module-accent) 56%, var(--border));
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--module-accent) 14%, transparent);
+  box-shadow: none;
+}
+
+.app-shell[data-theme='work'] .work-toolbar,
+.app-shell[data-theme='work'] .work-filterbar {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] .work-toolbar {
+  min-height: 46px;
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-1);
+}
+
+.app-shell[data-theme='work'] .work-filterbar {
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-card-small);
+  background: var(--panel-background);
+  backdrop-filter: blur(var(--panel-blur)) saturate(112%);
+  box-shadow: inset 0 1px 0 var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .range-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.app-shell[data-theme='work'] .range-control .button[data-selected='true'],
+.app-shell[data-theme='work'] .note-toolbar .button[data-selected='true'] {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.app-shell[data-theme='work'] .work-metrics,
+.app-shell[data-theme='work'] .learning-summary {
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-card-small);
+  background: var(--panel-background);
+  backdrop-filter: blur(var(--panel-blur)) saturate(112%);
+  box-shadow: var(--panel-shadow);
+}
+
+.app-shell[data-theme='work'] .work-metrics article,
+.app-shell[data-theme='work'] .learning-summary > div {
+  min-width: 0;
+  padding: var(--space-4) var(--space-5);
+  border-right: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-metrics article {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+
+.app-shell[data-theme='work'] .work-metrics article:last-child,
+.app-shell[data-theme='work'] .learning-summary > div:last-child {
+  border-right: 0;
+}
+
+.app-shell[data-theme='work'] .work-metrics span,
+.app-shell[data-theme='work'] .learning-summary span {
+  color: var(--text-secondary);
+  font-size: var(--font-size-meta);
+}
+
+.app-shell[data-theme='work'] .work-metrics strong,
+.app-shell[data-theme='work'] .learning-summary strong {
+  color: var(--text-primary);
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.app-shell[data-theme='work'] .work-metrics small {
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] .work-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--card-gap);
+  margin-top: var(--space-4);
+}
+
+.app-shell[data-theme='work'] .work-module {
+  grid-column: span 4;
+  min-width: 0;
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--card-radius);
+  background: var(--panel-background);
+  backdrop-filter: blur(var(--panel-blur)) saturate(112%);
+  box-shadow: var(--panel-shadow);
+  transition:
+    background-color var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    box-shadow var(--motion-panel) ease,
+    transform var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='work'] .work-module:first-child {
+  grid-column: span 8;
+  grid-row: span 2;
+  padding: var(--space-6);
+  border-color: var(--border-strong);
+  background: var(--panel-background-elevated);
+  backdrop-filter: blur(var(--panel-blur)) saturate(116%);
+  box-shadow: var(--panel-shadow-elevated);
+}
+
+.app-shell[data-theme='work'] .work-module:nth-child(n + 2) {
+  grid-column: span 4;
+}
+
+.app-shell[data-theme='work'] .work-module:hover {
+  border-color: var(--border);
+  transform: translateY(-1px);
+}
+
+.app-shell[data-theme='work'] .work-module h2,
+.app-shell[data-theme='work'] .work-split h2 {
+  color: var(--text-primary);
+  font-size: var(--font-size-section-title);
+  font-weight: 600;
+}
+
+.app-shell[data-theme='work'] .work-module a,
+.app-shell[data-theme='work'] :is(.attachment-list, .work-list) a {
+  color: var(--module-accent);
+}
+
+.app-shell[data-theme='work'] .work-module__number {
+  margin: var(--space-8) 0 var(--space-6);
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.app-shell[data-theme='work'] .work-module dl {
+  gap: 0;
+}
+
+.app-shell[data-theme='work'] .work-module dl div {
+  padding: var(--space-3) 0;
+  border-top: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-module dt {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] .work-module dd {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.app-shell[data-theme='work'] .work-split {
+  grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+  gap: var(--card-gap);
+  align-items: start;
+}
+
+.app-shell[data-theme='work'] .work-split > section,
+.app-shell[data-theme='work'] :is(.work-editor, .project-detail) {
+  min-width: 0;
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--card-radius);
+  background: var(--panel-background);
+  backdrop-filter: blur(var(--panel-blur)) saturate(112%);
+  box-shadow: var(--panel-shadow);
+}
+
+.app-shell[data-theme='work'] .work-split > section {
+  padding: var(--space-5);
+}
+
+.app-shell[data-theme='work'] :is(.work-editor, .project-detail) {
+  padding: var(--space-5);
+  border-color: var(--border-strong);
+  background: var(--panel-background-elevated);
+  backdrop-filter: blur(var(--panel-blur)) saturate(116%);
+  box-shadow: var(--panel-shadow-elevated);
+}
+
+.app-shell[data-theme='work'] .section-heading {
+  min-height: 32px;
+}
+
+.app-shell[data-theme='work'] .section-heading > span,
+.app-shell[data-theme='work'] .row-actions > span {
+  color: var(--text-muted);
+  font-size: var(--font-size-meta);
+}
+
+.app-shell[data-theme='work'] .pipeline {
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.app-shell[data-theme='work'] .pipeline > div {
+  min-height: 380px;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-card-small);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  box-shadow: none;
+}
+
+.app-shell[data-theme='work'] .pipeline h3 {
+  color: var(--text-secondary);
+  font-size: var(--font-size-meta);
+  letter-spacing: 0.03em;
+}
+
+.app-shell[data-theme='work'] :is(.pipeline-item, .project-list button, .resource-list button) {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+  box-shadow: none;
+  transition:
+    filter var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    background-color var(--motion-hover) ease,
+    transform var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='work']
+  :is(.pipeline-item, .project-list button, .resource-list button):hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+}
+
+.app-shell[data-theme='work']
+  :is(.pipeline-item, .project-list button, .resource-list button)[data-selected='true'] {
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--module-accent) 15%, var(--surface-elevated));
+  box-shadow: none;
+}
+
+.app-shell[data-theme='work']
+  :is(.pipeline-item, .project-list button, .resource-list button)
+  span {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] :is(.inline-work-form, .related-knowledge) {
+  border-top-color: var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-editor .form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.app-shell[data-theme='work'] .work-editor .form-grid > * {
+  min-width: 0;
+  width: 100%;
+}
+
+.app-shell[data-theme='work'] .project-detail > section {
+  border-top: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-list li {
+  align-items: center;
+  border-bottom: var(--border-width) solid var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .work-list small,
+.app-shell[data-theme='work'] .resource-list small,
+.app-shell[data-theme='work'] .calendar-list :is(time, span) {
+  color: var(--text-muted);
+}
+
+.app-shell[data-theme='work'] .calendar-list {
+  border-top-color: var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .calendar-list button {
+  border-bottom-color: var(--border-soft);
+  color: var(--text-primary);
+  transition:
+    color var(--motion-hover) ease,
+    background-color var(--motion-hover) ease;
+}
+
+.app-shell[data-theme='work'] .calendar-list button:hover {
+  background: var(--surface-hover);
+}
+
+.app-shell[data-theme='work'] .trend-chart {
+  overflow-x: auto;
+  border-bottom-color: var(--border);
+}
+
+.app-shell[data-theme='work'] .trend-chart i {
+  background: var(--module-accent);
+}
+
+.app-shell[data-theme='work'] .trend-chart strong {
+  color: var(--text-secondary);
+}
+
+.app-shell[data-theme='work'] .learning-summary {
+  margin-bottom: var(--card-gap);
+}
+
+.app-shell[data-theme='work'] .resource-list progress {
+  accent-color: var(--module-accent);
+}
+
+.app-shell[data-theme='work'] :is(.note-composer, .note-preview, .rich-text-editor) {
+  border-color: var(--border);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+}
+
+.app-shell[data-theme='work'] .note-toolbar {
+  gap: var(--space-2);
+  border-color: var(--border-soft);
+}
+
+.app-shell[data-theme='work'] .draft-restored {
+  color: var(--color-info);
+  background: var(--accent-soft);
+}
+
+.app-shell[data-theme='work'] .conversion-warning {
+  color: var(--color-warning);
+}
+
+.app-shell[data-theme='work'] .work-list [data-severity='CRITICAL'],
+.app-shell[data-theme='work'] .work-list [data-severity='HIGH'] {
+  color: var(--color-danger);
+}
+
+@media (max-width: 1280px) {
+  .app-shell[data-theme='work'] .work-split {
+    grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr);
+  }
+
+  .app-shell[data-theme='work'] .work-split > section,
+  .app-shell[data-theme='work'] :is(.work-editor, .project-detail) {
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 1120px) {
+  .app-shell[data-theme='work'] .work-metrics,
+  .app-shell[data-theme='work'] .learning-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-shell[data-theme='work'] .work-metrics article:nth-child(2),
+  .app-shell[data-theme='work'] .learning-summary > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .app-shell[data-theme='work'] .work-metrics article:nth-child(n + 3),
+  .app-shell[data-theme='work'] .learning-summary > div:nth-child(n + 3) {
+    border-top: var(--border-width) solid var(--border-soft);
+  }
+
+  .app-shell[data-theme='work'] .work-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-shell[data-theme='work'] .work-module,
+  .app-shell[data-theme='work'] .work-module:first-child,
+  .app-shell[data-theme='work'] .work-module:nth-child(n + 2) {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+
+  .app-shell[data-theme='work'] .work-module:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .app-shell[data-theme='work'] .work-split,
+  .app-shell[data-theme='work'] .work-split--project {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-shell[data-theme='work'] :is(.work-editor, .project-detail) {
+    padding: var(--space-5);
+    border-top: var(--border-width) solid var(--border);
+  }
+
+  .app-shell[data-theme='work'] .work-toolbar,
+  .app-shell[data-theme='work'] .work-filterbar {
+    align-items: stretch;
+  }
+
+  .app-shell[data-theme='work'] .pipeline {
+    grid-template-columns: repeat(5, 180px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell[data-theme='work']
+    :is(
+      .work-tabs__link,
+      .work-module,
+      .pipeline-item,
+      .project-list button,
+      .resource-list button,
+      .calendar-list button
+    ) {
+    transition-duration: 0.01ms;
+  }
+}

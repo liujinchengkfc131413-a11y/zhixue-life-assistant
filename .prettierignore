@@ -1,0 +1,12 @@
+dist
+coverage
+node_modules
+playwright-report
+test-results
+distribution
+pnpm-lock.yaml
+packages/contracts/src/generated
+docs/api/openapi.json
+.codex/tmp
+docs/design/v2/**/*metrics*.json
+*.md

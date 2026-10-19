@@ -1,0 +1,187 @@
+[
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "sidebarWidth": 240
+    },
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 1080
+    },
+    "stage": {
+      "x": 432,
+      "y": 80,
+      "width": 930,
+      "height": 700
+    },
+    "plan": {
+      "x": 1554,
+      "y": 140,
+      "width": 335,
+      "height": 861
+    },
+    "timeline": {
+      "x": 492,
+      "y": 800,
+      "width": 810,
+      "height": 110
+    },
+    "composer": {
+      "x": 492,
+      "y": 932,
+      "width": 810,
+      "height": 70
+    }
+  },
+  {
+    "viewport": {
+      "width": 1600,
+      "height": 900,
+      "sidebarWidth": 240
+    },
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 900
+    },
+    "stage": {
+      "x": 272,
+      "y": 70,
+      "width": 930,
+      "height": 610
+    },
+    "plan": {
+      "x": 1234,
+      "y": 118,
+      "width": 335,
+      "height": 726
+    },
+    "timeline": {
+      "x": 332,
+      "y": 690,
+      "width": 810,
+      "height": 84
+    },
+    "composer": {
+      "x": 332,
+      "y": 826,
+      "width": 810,
+      "height": 60
+    }
+  },
+  {
+    "viewport": {
+      "width": 1536,
+      "height": 1024,
+      "sidebarWidth": 240
+    },
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 1024
+    },
+    "stage": {
+      "x": 240,
+      "y": 80,
+      "width": 930,
+      "height": 700
+    },
+    "plan": {
+      "x": 1170,
+      "y": 140,
+      "width": 335,
+      "height": 805
+    },
+    "timeline": {
+      "x": 300,
+      "y": 800,
+      "width": 810,
+      "height": 110
+    },
+    "composer": {
+      "x": 300,
+      "y": 932,
+      "width": 810,
+      "height": 70
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900,
+      "sidebarWidth": 210
+    },
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 210,
+      "height": 900
+    },
+    "stage": {
+      "x": 210,
+      "y": 70,
+      "width": 900,
+      "height": 610
+    },
+    "plan": {
+      "x": 1110,
+      "y": 118,
+      "width": 310,
+      "height": 726
+    },
+    "timeline": {
+      "x": 260,
+      "y": 690,
+      "width": 800,
+      "height": 84
+    },
+    "composer": {
+      "x": 260,
+      "y": 826,
+      "width": 800,
+      "height": 60
+    }
+  },
+  {
+    "viewport": {
+      "width": 1366,
+      "height": 768,
+      "sidebarWidth": 196
+    },
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 196,
+      "height": 768
+    },
+    "stage": {
+      "x": 196,
+      "y": 54,
+      "width": 874,
+      "height": 520
+    },
+    "plan": {
+      "x": 1070,
+      "y": 96,
+      "width": 280,
+      "height": 624
+    },
+    "timeline": {
+      "x": 253,
+      "y": 584,
+      "width": 760,
+      "height": 72
+    },
+    "composer": {
+      "x": 253,
+      "y": 700,
+      "width": 760,
+      "height": 56
+    }
+  }
+]

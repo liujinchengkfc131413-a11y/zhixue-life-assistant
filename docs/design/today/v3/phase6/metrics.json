@@ -1,0 +1,157 @@
+{
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "phase": "6",
+    "composition": "v3-visual-state",
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 1024
+    },
+    "scene": {
+      "x": 240,
+      "y": 0,
+      "width": 1296,
+      "height": 1024
+    },
+    "environment": {
+      "x": 290,
+      "y": 28,
+      "width": 1216,
+      "height": 90
+    },
+    "fountain": {
+      "x": 240,
+      "y": 80,
+      "width": 930,
+      "height": 700
+    },
+    "pressure": {
+      "x": 290,
+      "y": 155,
+      "width": 190,
+      "height": 265
+    },
+    "statuses": {
+      "x": 1000,
+      "y": 165,
+      "width": 150,
+      "height": 254
+    },
+    "plan": {
+      "x": 1170,
+      "y": 140,
+      "width": 335,
+      "height": 805
+    },
+    "timeline": {
+      "x": 310,
+      "y": 800,
+      "width": 810,
+      "height": 80
+    },
+    "composer": {
+      "x": 275,
+      "y": 932,
+      "width": 810,
+      "height": 56
+    },
+    "planCards": 3,
+    "fountainLayers": [
+      "environment",
+      "scene-glow",
+      "webgl-water",
+      "pool",
+      "water-surface",
+      "static-fountain",
+      "dynamic-water"
+    ],
+    "canvasCount": 0,
+    "webglCanvasCount": 1,
+    "webglMode": "full",
+    "webglOwnership": "surface,main-jet,arc-streams,droplets,splash,ripple,mist,lighting,reflection",
+    "webglAtmosphere": "droplets,splash,ripple,mist,lighting,reflection",
+    "atmosphereElapsed": 1,
+    "gpuParticles": 165,
+    "gpuSplashParticles": 40,
+    "gpuRipples": 16,
+    "geometryStreams": "primary_arc:2,mid_stream:6,fine_stream:4",
+    "fountainProfile": "balanced",
+    "fountainProfileBlend": 1,
+    "fountainVisualState": "jet:0.720,width:0.638,density:0.581,spread:0.563,speed:0.475,droplets:0.396,mist:0.293,ripple:0.402,light:0.643,warmth:0.219,stability:0.809",
+    "fountainVisualTransition": null,
+    "horizontalOverflow": false,
+    "uiStyles": {
+      "heading": {
+        "font-size": "29px",
+        "font-weight": "650",
+        "line-height": "normal"
+      },
+      "pressure": {
+        "background-image": "none",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(5px)"
+      },
+      "status": {
+        "min-height": "auto",
+        "font-family": "Inter, \"Segoe UI\", \"Microsoft YaHei\", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "backdrop-filter": "blur(7px)"
+      },
+      "planCard": {
+        "background-image": "none",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(7px)"
+      },
+      "composer": {
+        "height": "56px",
+        "border-radius": "26px",
+        "background-color": "rgba(250, 252, 251, 0.94)"
+      }
+    },
+    "visibleHeadings": ["今日", "今日计划", "即将开始"]
+  },
+  "profileMetrics": [
+    {
+      "profile": "calm",
+      "blend": 0,
+      "visualState": "jet:0.580,width:0.468,density:0.361,spread:0.403,speed:0.275,droplets:0.176,mist:0.173,ripple:0.202,light:0.463,warmth:0.179,stability:0.909",
+      "transition": null,
+      "gpuParticles": 120,
+      "gpuSplashParticles": 28,
+      "gpuRipples": 16
+    },
+    {
+      "profile": "balanced",
+      "blend": 1,
+      "visualState": "jet:0.720,width:0.638,density:0.581,spread:0.563,speed:0.475,droplets:0.396,mist:0.293,ripple:0.402,light:0.643,warmth:0.219,stability:0.809",
+      "transition": null,
+      "gpuParticles": 165,
+      "gpuSplashParticles": 40,
+      "gpuRipples": 16
+    },
+    {
+      "profile": "busy",
+      "blend": 1,
+      "visualState": "jet:0.860,width:0.808,density:0.761,spread:0.723,speed:0.715,droplets:0.696,mist:0.493,ripple:0.682,light:0.823,warmth:0.259,stability:0.589",
+      "transition": null,
+      "gpuParticles": 219,
+      "gpuSplashParticles": 53,
+      "gpuRipples": 16
+    },
+    {
+      "profile": "intense",
+      "blend": 1,
+      "visualState": "jet:0.960,width:0.940,density:0.941,spread:0.903,speed:0.935,droplets:0.976,mist:0.713,ripple:0.942,light:0.963,warmth:0.299,stability:0.349",
+      "transition": null,
+      "gpuParticles": 271,
+      "gpuSplashParticles": 65,
+      "gpuRipples": 16
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

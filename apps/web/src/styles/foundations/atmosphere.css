@@ -1,0 +1,113 @@
+.app-shell:not([data-theme='today']) .theme-atmosphere {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--environment-background);
+  opacity: var(--environment-opacity);
+  transform: translate3d(0, 0, 0) scale(1.02);
+  transform-origin: 50% 20%;
+  animation: v2-atmosphere-drift var(--environment-duration) ease-in-out infinite alternate;
+}
+
+.app-shell[data-theme='work'] .theme-atmosphere {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 34rem,
+      var(--environment-edge) 48rem,
+      var(--page-bg) 62rem
+    ),
+    radial-gradient(ellipse 58% 42% at 72% 0%, var(--environment-sunlight), transparent 74%),
+    url('../../assets/work/work-cold-morning-studio-v2.png') right top / max(100%, 1536px) auto
+      no-repeat,
+    var(--page-bg);
+}
+
+.app-shell[data-theme='life'] .theme-atmosphere {
+  background:
+    url('../../assets/life/life-morning-sage-forest-v2.png') right top / max(100%, 1536px) auto
+      no-repeat,
+    linear-gradient(180deg, var(--page-bg), var(--page-bg-secondary));
+}
+
+.app-shell[data-theme='vision'] .theme-atmosphere,
+.app-shell[data-theme='ai'] .theme-atmosphere {
+  background:
+    radial-gradient(ellipse 68% 52% at 64% 4%, var(--environment-mist), transparent 68%),
+    radial-gradient(ellipse 42% 36% at 82% 13%, var(--environment-sunlight), transparent 72%),
+    radial-gradient(ellipse 52% 46% at 44% 26%, var(--environment-light), transparent 76%),
+    linear-gradient(
+      90deg,
+      var(--environment-edge),
+      transparent 22%,
+      transparent 70%,
+      var(--environment-edge)
+    ),
+    linear-gradient(180deg, transparent 58%, var(--environment-edge));
+}
+
+.app-shell[data-theme='vision'] .theme-atmosphere {
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 52rem,
+      var(--environment-edge) 70rem,
+      var(--page-bg) 86rem
+    ),
+    url('../../assets/vision/vision-distant-horizon-v2.png') right top / max(100%, 1448px) auto
+      no-repeat,
+    var(--page-bg);
+}
+
+.app-shell[data-theme='ai'] .theme-atmosphere {
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 52rem,
+      var(--environment-edge) 70rem,
+      var(--page-bg) 86rem
+    ),
+    url('../../assets/vision/vision-ai-arc-horizon-v2.png') right top / max(100%, 1448px) auto
+      no-repeat,
+    var(--page-bg);
+}
+
+.app-shell[data-theme='system'] .theme-atmosphere {
+  display: none;
+}
+
+@keyframes v2-atmosphere-drift {
+  from {
+    transform: translate3d(-0.35%, -0.2%, 0) scale(1.02);
+  }
+
+  to {
+    transform: translate3d(0.35%, 0.2%, 0) scale(1.025);
+  }
+}
+
+@media (max-width: 1280px) {
+  .app-shell:not([data-theme='today']) .theme-atmosphere {
+    opacity: calc(var(--environment-opacity) * 0.78);
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell:not([data-theme='today']) .theme-atmosphere {
+    opacity: calc(var(--environment-opacity) * 0.56);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell:not([data-theme='today']) .theme-atmosphere {
+    animation: none;
+    transform: none;
+  }
+}

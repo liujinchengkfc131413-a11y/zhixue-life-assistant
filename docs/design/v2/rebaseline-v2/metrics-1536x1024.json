@@ -1,0 +1,178 @@
+[
+  {
+    "route": "/",
+    "theme": "today",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1024,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work",
+    "theme": "work",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1103,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work/self-media",
+    "theme": "work",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1679,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work/development",
+    "theme": "work",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1671,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work/learning",
+    "theme": "work",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1689,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life",
+    "theme": "life",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1278,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life/shopping",
+    "theme": "life",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1581,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life/diet",
+    "theme": "life",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1505,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life/fitness",
+    "theme": "life",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 2019,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life/entertainment",
+    "theme": "life",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1559,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/plans-goals",
+    "theme": "vision",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1043,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/assistant",
+    "theme": "ai",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1024,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/inbox",
+    "theme": "system",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1024,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/data-management",
+    "theme": "system",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1024,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/reminders",
+    "theme": "system",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 1024,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/settings",
+    "theme": "system",
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "scrollWidth": 1536,
+    "scrollHeight": 4361,
+    "horizontalOverflow": 0
+  }
+]

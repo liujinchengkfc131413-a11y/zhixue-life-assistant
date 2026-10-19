@@ -1,0 +1,22 @@
+{
+  "name": "@life-assistant/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./generated": "./src/generated/openapi.d.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "generate": "tsx scripts/generate-contracts.ts",
+    "generate:check": "tsx scripts/generate-contracts.ts --check"
+  },
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^9.1.0",
+    "@life-assistant/kernel": "workspace:*",
+    "openapi-typescript": "^7.13.0",
+    "zod": "^4.4.3"
+  }
+}

@@ -1,0 +1,2840 @@
+/* ==========================================================================
+   今日沉浸式界面（T2 视觉与正式资产）
+   设计基准：《今日沉浸式界面独立重构设计书》§4/§5/§6
+   T2：主题 token、正式场景资产（程序化 SVG）、玻璃材质、统一图标。
+   ========================================================================== */
+
+/* ---- 今日主题 token（作用域限定，不污染全局） ---- */
+.today-immersive {
+  --today-bg-deep: #0b4645;
+  --today-bg-mid: #176762;
+  --today-bg-high: #135b59;
+  --today-ink: #eaf4f1;
+  --today-ink-soft: rgb(234 244 241 / 68%);
+  --today-ink-faint: rgb(234 244 241 / 46%);
+  --today-glass: rgb(9 74 72 / 18%);
+  --today-glass-strong: rgb(13 83 80 / 24%);
+  --today-glass-border: rgb(255 255 255 / 22%);
+  --today-work: #4fa3a0;
+  --today-life: #e09a6d;
+  --today-sleep: #7b8fc4;
+  --today-free: #8aa49b;
+  --today-accent: #3e9481;
+  --today-radius-lg: 16px;
+  --today-radius-md: 12px;
+  --today-radius-sm: 8px;
+  --today-shadow: 0 18px 40px rgb(3 44 42 / 16%);
+  --today-glow: rgb(79 163 160 / 22%);
+}
+
+/* ---- 全视口场景 ---- */
+.today-immersive {
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: var(--today-ink);
+  background:
+    radial-gradient(920px 620px at 39% 52%, rgb(164 215 181 / 32%), transparent 70%),
+    radial-gradient(1100px 760px at 42% 12%, rgb(105 181 165 / 24%), transparent 66%),
+    radial-gradient(720px 620px at 92% 55%, rgb(83 145 127 / 24%), transparent 68%),
+    linear-gradient(
+      165deg,
+      var(--today-bg-high) 0%,
+      var(--today-bg-mid) 44%,
+      var(--today-bg-deep) 100%
+    );
+}
+
+/* Phase 1：所有可见区域进入同一个 Scene stacking context。
+   Grid area 是语义锚点；后续资产、中轴和 Overlay Phase 可在不改业务 DOM 的前提下继续分层。 */
+.today-scene {
+  --today-scene-brightness: 1;
+  --today-scene-contrast: 1;
+  --today-scene-temperature-color: 255 255 255;
+  --today-scene-temperature-opacity: 0;
+  --today-scene-environment-opacity: 1;
+  --today-scene-vignette-opacity: 0.05;
+  --today-scene-readability-top-opacity: 0.11;
+  --today-scene-readability-bottom-opacity: 0.1;
+  --today-scene-environment-transition-ms: 5000ms;
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+/* V3 Scene plate：环境、空水池与湿润地面覆盖整个主内容区。
+   所有业务 UI 和喷泉水体都在它上方独立叠加，避免舞台容器形成矩形画框。 */
+.today-scene__backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.98) brightness(0.9) contrast(1.03) brightness(var(--today-scene-brightness))
+    contrast(var(--today-scene-contrast));
+  transition: filter var(--today-scene-environment-transition-ms) ease-in-out;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Final Scene media：静态母版和两条全场景视频共享同一裁切坐标。
+   双层仅在状态跨档时短暂同时播放，稳定态只有 active video 保持运动。 */
+.today-scene-media {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  filter: brightness(var(--today-scene-brightness)) contrast(var(--today-scene-contrast));
+  transition: filter var(--today-scene-environment-transition-ms) ease-in-out;
+  pointer-events: none;
+}
+
+.today-scene-media__master,
+.today-scene-media__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 50%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.today-scene-media__master {
+  z-index: 0;
+}
+
+.today-scene-media__video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1500ms ease-in-out;
+}
+
+.today-scene-media__video[data-visible='true'] {
+  opacity: 1;
+}
+
+.today-scene__environment-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: var(--today-scene-environment-opacity);
+  background:
+    linear-gradient(
+      rgb(var(--today-scene-temperature-color) / var(--today-scene-temperature-opacity)),
+      rgb(var(--today-scene-temperature-color) / var(--today-scene-temperature-opacity))
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(3 39 38 / var(--today-scene-readability-top-opacity)) 0%,
+      transparent 22%,
+      transparent 76%,
+      rgb(2 35 34 / var(--today-scene-readability-bottom-opacity)) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 48%,
+      rgb(2 39 38 / var(--today-scene-vignette-opacity)) 100%
+    );
+  transition:
+    opacity var(--today-scene-environment-transition-ms) ease-in-out,
+    background var(--today-scene-environment-transition-ms) ease-in-out;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .today-scene__backdrop,
+  .today-scene-media,
+  .today-scene__environment-overlay {
+    transition: none;
+  }
+}
+
+.today-scene__environment {
+  position: absolute;
+  z-index: 5;
+  top: 28px;
+  right: 30px;
+  left: 50px;
+  height: 76px;
+}
+
+.today-scene__stage {
+  position: absolute;
+  z-index: 4;
+  top: 80px;
+  left: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  justify-content: center;
+  width: min(930px, calc(100% - 335px));
+  height: 700px;
+  min-width: 0;
+  min-height: 520px;
+}
+
+.today-scene__plan {
+  position: absolute;
+  z-index: 5;
+  top: 140px;
+  right: 31px;
+  bottom: 79px;
+  width: 335px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.today-scene__timeline {
+  position: absolute;
+  z-index: 5;
+  top: 800px;
+  left: 70px;
+  width: 810px;
+  height: 110px;
+  min-width: 0;
+}
+
+.today-scene__ai {
+  position: absolute;
+  z-index: 5;
+  top: 932px;
+  left: 35px;
+  width: 810px;
+  min-height: 70px;
+  min-width: 0;
+}
+
+/* Gate 2 专用静态场景预览：只保留环境、池体、静态喷泉与光晕。 */
+.today-immersive[data-today-v3-gate='2']
+  :is(
+    .today-scene__environment,
+    .today-state-axis,
+    .today-status-floats,
+    .today-scene__plan,
+    .today-scene__timeline,
+    .today-scene__ai
+  ) {
+  visibility: hidden;
+}
+
+/* QA 隐号模式：只看水体轮廓与节奏，不暴露压力数字或领域读数。 */
+.today-scene:has(.fountain-stage[data-blind-test]) .today-state-axis,
+.today-scene:has(.fountain-stage[data-blind-test]) .today-status-floats {
+  visibility: hidden;
+}
+
+.today-immersive__loading {
+  align-self: center;
+  justify-self: center;
+  color: rgb(234 244 241 / 70%);
+}
+
+.today-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- 顶部环境信息 ---- */
+.today-env {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.today-env__heading {
+  margin: 0;
+  font-size: 29px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.today-env__date {
+  margin: 3px 0 0;
+  color: rgb(234 244 241 / 72%);
+  font-size: 14px;
+}
+
+.today-env__sentence {
+  margin: 0;
+  text-align: center;
+  padding-top: 34px;
+  color: rgb(244 250 247 / 80%);
+  font-size: 15px;
+}
+
+.today-env__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 52px;
+}
+
+.today-weather__state {
+  color: rgb(234 244 241 / 55%);
+  font-size: 13px;
+}
+
+.today-weather {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: rgb(234 244 241 / 70%);
+}
+
+.today-weather__temperature {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.today-env__reschedule {
+  padding: 4px 7px;
+  border-color: transparent;
+  color: rgb(234 244 241 / 58%);
+  background: transparent;
+  font-size: 10px;
+}
+
+/* ---- 中央喷泉场景 ---- */
+.fountain-scene {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.fountain-scene__fountain {
+  width: 100%;
+  height: 100%;
+}
+
+.fountain-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.fountain-stage__scene-glow {
+  position: absolute;
+  z-index: 1;
+  top: 24%;
+  left: 50%;
+  width: 74%;
+  height: 68%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgb(245 246 205 / 34%) 0 10%, transparent 48%),
+    radial-gradient(ellipse at 50% 78%, rgb(114 219 190 / 22%) 0 16%, transparent 62%);
+  filter: blur(24px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.fountain-stage__pool {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: calc(0.88 + var(--fountain-pool-reflection) * 0.12);
+  -webkit-mask-image: radial-gradient(ellipse 52% 34% at 50% 76%, #000 0 76%, transparent 100%);
+  mask-image: radial-gradient(ellipse 52% 34% at 50% 76%, #000 0 76%, transparent 100%);
+  filter: saturate(calc(0.92 + var(--fountain-domain-warmth) * 0.08))
+    brightness(calc(0.9 + var(--fountain-pool-reflection) * 0.1));
+  pointer-events: none;
+}
+
+.fountain-stage__water-surface {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.68;
+  -webkit-mask-image: radial-gradient(ellipse 49% 12% at 50% 73%, #000 0 82%, transparent 100%);
+  mask-image: radial-gradient(ellipse 49% 12% at 50% 73%, #000 0 82%, transparent 100%);
+  filter: saturate(1.08) brightness(1.05);
+  pointer-events: none;
+}
+
+.fountain-stage__static-fountain {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: max(0.78, var(--fountain-texture-opacity));
+  mix-blend-mode: screen;
+  transform: scale(0.98, 0.94);
+  transform-origin: 50% 76%;
+  filter: saturate(0.76) brightness(1.08);
+  transition:
+    opacity 650ms ease,
+    transform 650ms ease;
+  pointer-events: none;
+}
+
+/* Phase 5：WebGL 接管水体、落水反馈与氛围后，摄影水体只保留极弱材质连续性。 */
+.fountain-stage[data-webgl-active='true'] .fountain-stage__static-fountain {
+  opacity: min(0.14, var(--fountain-texture-opacity));
+  filter: saturate(0.74) brightness(0.8) blur(0.45px);
+}
+
+/* Phase 4：几何 Renderer 成功后，摄影喷泉仅留下极弱材质基底，轮廓由 MainJet 与三类水束接管。 */
+.fountain-stage[data-geometry-only='true'][data-webgl-active='true']
+  .fountain-stage__static-fountain {
+  opacity: 0.1;
+  filter: saturate(0.7) brightness(0.76) blur(0.5px);
+}
+
+.fountain-stage__dynamic {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  opacity: 1;
+}
+
+.fountain-stage__webgl {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fountain-webgl-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+
+.fountain-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---- 喷泉—压力—时间状态中轴（Phase 4） ---- */
+.today-state-axis {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: block;
+  width: auto;
+  color: var(--today-ink);
+  pointer-events: none;
+}
+
+.today-state-axis__pressure {
+  position: absolute;
+  top: 75px;
+  left: 50px;
+  display: grid;
+  gap: 4px;
+  width: 190px;
+  min-height: 265px;
+  padding: 30px 28px;
+  border: 1px solid rgb(255 255 255 / 19%);
+  border-radius: 18px;
+  background: rgb(14 91 86 / 16%);
+  text-align: left;
+  text-shadow: 0 2px 16px rgb(0 0 0 / 24%);
+  backdrop-filter: blur(5px);
+}
+
+.today-state-axis__label,
+.today-state-axis__description {
+  color: rgb(244 250 247 / 82%);
+  font-size: 14px;
+}
+
+.today-state-axis__score {
+  margin-top: 6px;
+  font-size: 39px;
+  font-weight: 620;
+  line-height: 1;
+}
+
+.today-state-axis__level {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.today-state-axis__description {
+  max-width: 130px;
+  margin-top: 34px;
+  line-height: 1.65;
+}
+
+.today-state-axis__factors {
+  position: absolute;
+  z-index: 8;
+  top: 315px;
+  left: 73px;
+  pointer-events: auto;
+}
+
+.today-state-axis__factors-toggle {
+  border: 0;
+  padding: 2px 5px;
+  color: var(--today-ink-soft);
+  background: transparent;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.today-state-axis__popover {
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  top: calc(100% + 8px);
+  bottom: auto;
+  width: min(290px, 36vw);
+  padding: 12px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 12px;
+  background: rgb(7 36 33 / 92%);
+  box-shadow: 0 18px 38px rgb(0 0 0 / 35%);
+  backdrop-filter: blur(16px);
+  text-align: left;
+}
+
+.today-state-axis__popover p {
+  margin: 0 0 7px;
+  color: var(--today-ink);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.today-state-axis__popover ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.today-state-axis__popover li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--today-ink-soft);
+  font-size: 11px;
+}
+
+.today-state-axis__popover strong {
+  color: #ffe0a6;
+}
+
+.today-state-axis__now {
+  position: absolute;
+  top: 545px;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 55%);
+  transform: translateX(-50%);
+}
+
+.today-state-axis__now span {
+  color: rgb(244 250 247 / 72%);
+  font-size: 12px;
+}
+
+.today-state-axis__now strong {
+  font-size: 37px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.today-state-axis__guide {
+  position: absolute;
+  top: 632px;
+  left: 50%;
+  display: block;
+  width: 1px;
+  height: 68px;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 75%), rgb(255 255 255 / 8%));
+}
+
+.today-state-axis__guide span {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f5fff9;
+  box-shadow: 0 0 12px rgb(255 255 255 / 80%);
+  transform: translate(-50%, 50%);
+}
+
+/* ---- 场景时间状态浮层（Phase 4） ---- */
+.today-status-floats {
+  position: absolute;
+  z-index: 3;
+  top: 85px;
+  right: 20px;
+  display: grid;
+  gap: 10px;
+  width: 150px;
+  pointer-events: none;
+}
+
+.today-status-floats__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px auto;
+  grid-template-areas:
+    'icon label'
+    'icon value';
+  align-items: center;
+  gap: 1px 7px;
+  min-width: 0;
+  padding: 11px 12px;
+  color: rgb(234 244 241 / 56%);
+  border-radius: 10px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  background: linear-gradient(120deg, rgb(20 112 105 / 19%), rgb(255 255 255 / 7%));
+  box-shadow: none;
+  backdrop-filter: blur(7px);
+  opacity: 0.94;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 72%);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.today-status-floats__item svg {
+  grid-area: icon;
+}
+
+.today-status-floats__item span {
+  grid-area: label;
+  font-size: 11px;
+}
+
+.today-status-floats__item strong {
+  grid-area: value;
+  color: rgb(234 244 241 / 82%);
+  font-size: 12px;
+  font-weight: 620;
+  white-space: nowrap;
+}
+
+.today-status-floats__item em {
+  position: absolute;
+  top: -5px;
+  right: 7px;
+  color: rgb(234 244 241 / 72%);
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+
+.today-status-floats__item[data-active='true'] {
+  border-radius: 10px;
+  background: rgb(8 43 39 / 35%);
+  opacity: 1;
+  transform: none;
+}
+
+.today-status-floats__item[data-kind='SLEEP'] {
+  color: var(--today-sleep);
+}
+
+.today-status-floats__item[data-kind='WORK'] {
+  color: var(--today-work);
+}
+
+.today-status-floats__item[data-kind='LIFE'] {
+  color: var(--today-life);
+}
+
+.today-status-floats__item[data-kind='FREE'] {
+  color: var(--today-free);
+}
+
+/* ---- 右侧计划栏 ---- */
+.today-plan {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(250px, 1.45fr) minmax(200px, 1.25fr) minmax(155px, 0.9fr) auto;
+  gap: 16px;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.today-plan__section {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 18px 19px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 18px;
+  background: rgb(11 82 79 / 18%);
+  box-shadow: none;
+  backdrop-filter: blur(7px);
+}
+
+.today-plan__section + .today-plan__section {
+  border-top-color: rgb(255 255 255 / 22%);
+}
+
+.today-plan__section--upcoming {
+  background: rgb(11 82 79 / 16%);
+}
+
+.today-plan__section--flexible {
+  padding-block: 16px;
+  background: rgb(11 82 79 / 14%);
+}
+
+.today-plan__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.today-plan__heading h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 680;
+  letter-spacing: -0.01em;
+}
+
+.today-plan__heading p {
+  margin: 2px 0 0;
+  color: var(--today-ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.today-plan__heading--compact {
+  margin-bottom: 8px;
+}
+
+.today-plan__heading--compact h2 {
+  font-size: 12px;
+  color: rgb(234 244 241 / 80%);
+  letter-spacing: 0.04em;
+}
+
+.today-plan__actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.today-plan__more {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(234 244 241 / 60%);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.today-plan__reschedule {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 26px;
+  padding: 4px 7px;
+  border: 1px solid rgb(221 246 236 / 19%);
+  border-radius: 8px;
+  color: rgb(239 250 245 / 72%);
+  background: rgb(218 244 234 / 6%);
+  font: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.today-plan__reschedule:hover:not(:disabled) {
+  border-color: rgb(221 246 236 / 32%);
+  color: rgb(249 253 251 / 92%);
+  background: rgb(218 244 234 / 11%);
+}
+
+.today-plan__reschedule:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.today-plan__window {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--today-ink-faint);
+  font-size: 10px;
+}
+
+.today-plan__list {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.today-plan__list--primary {
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(234 244 241 / 22%) transparent;
+}
+
+.today-plan__list--upcoming,
+.today-plan__list--flexible {
+  max-height: 116px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 1240px) {
+  .today-immersive {
+    padding-inline: 24px;
+  }
+
+  .today-scene {
+    grid-template-columns: minmax(0, 1fr) 292px;
+    column-gap: 18px;
+  }
+
+  .today-status-floats__item[data-kind='SLEEP'],
+  .today-status-floats__item[data-kind='FREE'] {
+    left: 2%;
+  }
+
+  .today-status-floats__item[data-kind='WORK'],
+  .today-status-floats__item[data-kind='LIFE'] {
+    right: 1%;
+  }
+}
+
+/* 中等桌面仍保留场景与 Plan Rail 的并置关系；只有更窄时才转为纵向访问流。 */
+@media (max-width: 960px) {
+  .today-immersive {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .today-scene {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(min(620px, 82svh), auto) auto auto auto;
+    grid-template-areas:
+      'environment'
+      'fountain'
+      'timeline'
+      'plan'
+      'ai';
+  }
+
+  .today-scene__stage {
+    min-height: min(620px, 82svh);
+  }
+
+  .today-plan {
+    grid-template-rows: minmax(250px, 1fr) auto auto auto;
+    height: min(680px, 80vh);
+    max-height: 680px;
+  }
+
+  .today-state-axis {
+    bottom: 6px;
+  }
+
+  .content.content--today {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .today-immersive {
+    gap: 12px;
+    padding: 16px 14px;
+  }
+
+  .today-env {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .today-env__sentence {
+    display: none;
+  }
+
+  .today-env__right {
+    gap: 8px;
+  }
+
+  .today-env__reschedule {
+    padding-inline: 9px;
+    font-size: 12px;
+  }
+
+  .today-scene {
+    grid-template-rows: auto auto auto auto auto;
+  }
+
+  .today-scene__stage {
+    min-height: 0;
+  }
+
+  .fountain-scene__fountain {
+    width: 100%;
+  }
+
+  .today-state-axis {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: min(100%, 360px);
+    margin: -34px auto 4px;
+    transform: none;
+  }
+
+  .today-state-axis__description {
+    display: none;
+  }
+
+  .today-state-axis__popover {
+    left: 50%;
+    bottom: calc(100% + 6px);
+    width: min(290px, 88vw);
+    transform: translateX(-50%);
+  }
+
+  .today-state-axis__guide {
+    height: 18px;
+  }
+
+  .today-status-floats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 8px;
+    width: min(100%, 380px);
+    margin: -6px auto 8px;
+  }
+
+  .today-status-floats__item,
+  .today-status-floats__item[data-kind] {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    background: transparent;
+    transform: none;
+  }
+
+  .today-timeline {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .today-timeline__row {
+    min-width: 620px;
+  }
+
+  .today-ai {
+    flex-wrap: wrap;
+  }
+
+  .today-ai__input {
+    flex-basis: calc(100% - 110px);
+  }
+
+  .today-ai__hint {
+    flex-basis: 100%;
+  }
+
+  .today-add__inline-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.today-plan__item {
+  display: grid;
+  gap: 4px;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 3%);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.today-plan__item[data-area='WORK'] {
+  border-left-color: #4fa3a0;
+}
+.today-plan__item[data-area='LIFE'] {
+  border-left-color: #e09a6d;
+}
+
+.today-plan__item[data-state='CURRENT'] {
+  border-color: rgb(112 202 183 / 25%);
+  border-left-color: #74c9b7;
+  background: linear-gradient(90deg, rgb(71 156 137 / 22%), rgb(255 255 255 / 5%));
+  box-shadow: inset 0 0 20px rgb(88 190 165 / 7%);
+}
+
+.today-plan__item[data-state='PAST'],
+.today-plan__item[data-state='COMPLETED'] {
+  opacity: 0.64;
+}
+
+.today-plan__item[data-state='COMPLETED'] .today-plan__main strong {
+  text-decoration: line-through;
+}
+
+.today-plan__item--flexible {
+  padding-block: 6px;
+  background: transparent;
+  opacity: 0.78;
+}
+
+.today-plan__row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.today-plan__main {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.today-env__reschedule:focus-visible,
+.today-plan__reschedule:focus-visible,
+.today-plan__main:focus-visible,
+.today-plan__done:focus-visible,
+.today-plan__disclosure:focus-visible,
+.today-plan__more:focus-visible,
+.today-add button:focus-visible,
+.today-add input:focus-visible,
+.today-add select:focus-visible {
+  outline: 2px solid rgb(128 220 201 / 80%);
+  outline-offset: 2px;
+}
+
+.today-add__close:focus-visible,
+.today-add__tabs button:focus-visible,
+.today-ai__input:focus-visible,
+.today-ai__button:focus-visible {
+  outline: 2px solid rgb(128 220 201 / 90%);
+  outline-offset: 2px;
+}
+
+.today-plan__title-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.today-plan__main strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.today-plan__title-line strong {
+  flex: 1;
+  min-width: 0;
+}
+
+.today-plan__title-line em {
+  flex-shrink: 0;
+  color: rgb(151 226 209 / 84%);
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
+.today-plan__main span {
+  display: block;
+  font-size: 11px;
+  color: rgb(234 244 241 / 55%);
+}
+
+.today-plan__done {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 4px 7px;
+  border: 1px solid rgb(234 244 241 / 28%);
+  border-radius: 6px;
+  color: #eaf4f1;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.today-plan__done span {
+  font-size: 10px;
+}
+
+.today-plan__empty {
+  display: grid;
+  place-content: center;
+  flex: 1;
+  min-height: 70px;
+  margin: 0;
+  text-align: center;
+  color: rgb(234 244 241 / 66%);
+  font-size: 12px;
+}
+
+.today-plan__empty p {
+  margin: 0;
+}
+
+.today-plan__empty span {
+  margin-top: 3px;
+  color: var(--today-ink-faint);
+  font-size: 10px;
+}
+
+.today-plan__empty--compact {
+  display: block;
+  min-height: 0;
+  text-align: left;
+  color: var(--today-ink-faint);
+  font-size: 11px;
+}
+
+.today-plan__warn {
+  padding: 4px 7px;
+  border-radius: 6px;
+  font-size: 10px;
+  color: #ffd9a8;
+  background: rgb(255 165 80 / 10%);
+}
+
+.today-plan__warn[data-severity='CRITICAL'] {
+  color: #ffd0bf;
+  background: rgb(224 111 83 / 13%);
+}
+
+.today-plan__warnings {
+  display: grid;
+  gap: 4px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.today-plan > .today-plan__warnings {
+  max-height: 64px;
+  overflow-y: auto;
+  padding: 8px 14px 10px;
+  border-top: 1px solid rgb(255 255 255 / 9%);
+}
+
+.today-plan__disclosure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: rgb(234 244 241 / 68%);
+  background: transparent;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.today-plan__disclosure small {
+  margin-left: 4px;
+  color: var(--today-ink-faint);
+  font-size: 10px;
+}
+
+.today-plan__disclosure + .today-plan__list,
+.today-plan__disclosure + .today-plan__empty {
+  margin-top: 7px;
+}
+
+/* ---- Rail 内添加事项 Overlay ---- */
+.today-add__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 8px;
+  border: 1px solid rgb(151 226 209 / 22%);
+  border-radius: 8px;
+  color: rgb(197 239 229 / 88%);
+  background: rgb(79 163 160 / 12%);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.today-add {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.today-add__backdrop,
+.today-add__panel {
+  grid-area: 1 / 1;
+}
+
+.today-add__backdrop {
+  z-index: 0;
+  border: 0;
+  background: rgb(2 16 14 / 72%);
+  backdrop-filter: blur(5px);
+  cursor: default;
+}
+
+.today-add__panel {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 18px;
+  border-bottom: 1px solid rgb(255 255 255 / 13%);
+  background:
+    radial-gradient(circle at 10% 0%, rgb(64 139 123 / 20%), transparent 45%), rgb(7 38 34 / 96%);
+  box-shadow: 0 22px 50px rgb(0 0 0 / 38%);
+}
+
+.today-add__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.today-add__header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.today-add__header p {
+  margin: 3px 0 0;
+  color: var(--today-ink-faint);
+  font-size: 10px;
+}
+
+.today-add__tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.today-add__tabs button {
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 6px;
+  color: rgb(234 244 241 / 68%);
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.today-add__tabs button[data-selected='true'] {
+  color: #fff;
+  background: rgb(79 163 160 / 55%);
+}
+
+.today-add__close {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 8px;
+  color: var(--today-ink-soft);
+  background: rgb(255 255 255 / 4%);
+  cursor: pointer;
+}
+
+.today-add__form {
+  display: grid;
+  gap: 10px;
+}
+
+.today-add__inline-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.today-add__form input,
+.today-add__form select {
+  min-width: 0;
+  padding: 7px 9px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 7px;
+  color: #eaf4f1;
+  background: rgb(0 0 0 / 22%);
+  font-size: 12px;
+}
+
+.today-add__form option {
+  color: #18201d;
+  background: #fff;
+}
+
+.today-add__field {
+  display: grid;
+  gap: 3px;
+  font-size: 11px;
+  color: rgb(234 244 241 / 62%);
+}
+
+.today-add__submit {
+  width: 100%;
+  margin-top: 2px;
+}
+
+/* ---- 底部横向时间轴 ---- */
+.today-timeline {
+  padding: 0;
+}
+
+.today-timeline__ticks {
+  position: relative;
+  height: 22px;
+}
+
+.today-timeline__ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgb(244 250 247 / 78%);
+}
+
+.today-timeline__ticks span:first-child {
+  transform: none;
+}
+
+.today-timeline__ticks span:last-child {
+  transform: translateX(-100%);
+}
+
+.today-timeline__row {
+  position: relative;
+  height: 58px;
+}
+
+.today-timeline__band {
+  position: absolute;
+  inset: 7px 0 20px;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 10px;
+  background: rgb(255 255 255 / 4%);
+}
+
+.today-timeline__band-segment {
+  position: absolute;
+  inset-block: 0;
+}
+
+.today-timeline__band-segment[data-kind='SLEEP'] {
+  background: rgb(123 143 196 / 66%);
+}
+
+.today-timeline__band-segment[data-kind='WORK'] {
+  background: rgb(79 163 160 / 72%);
+}
+
+.today-timeline__band-segment[data-kind='LIFE'] {
+  background: rgb(224 154 109 / 72%);
+}
+
+.today-timeline__band-segment[data-kind='FREE'] {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 7px, rgb(255 255 255 / 4%) 7px 8px),
+    rgb(138 164 155 / 18%);
+}
+
+.today-timeline__segment {
+  position: absolute;
+  z-index: 2;
+  top: 7px;
+  bottom: 7px;
+  min-width: 2px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.today-timeline__segment[data-block='sleep'] {
+  opacity: 0.6;
+}
+.today-timeline__segment[data-state='past'] {
+  filter: saturate(0.65);
+  opacity: 0.42;
+}
+.today-timeline__segment[data-state='active'] {
+  opacity: 1;
+  border-color: currentColor;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 38%),
+    0 0 10px currentColor;
+}
+.today-timeline__segment:focus-visible,
+.today-state-axis__factors-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.today-timeline__nodes {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.today-timeline__nodes span {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.today-timeline__nodes span[data-kind='SLEEP'] {
+  color: var(--today-sleep);
+}
+
+.today-timeline__nodes span[data-kind='WORK'] {
+  color: var(--today-work);
+}
+
+.today-timeline__nodes span[data-kind='LIFE'] {
+  color: var(--today-life);
+}
+
+.today-timeline__nodes span[data-active='true'] {
+  width: 9px;
+  height: 9px;
+  background: #f7fff9;
+}
+
+.today-timeline__cursor {
+  position: absolute;
+  z-index: 5;
+  top: -14px;
+  bottom: 2px;
+  width: 1px;
+  border-radius: 2px;
+  background: #f5fff9;
+  box-shadow: 0 0 8px rgb(255 255 255 / 70%);
+}
+
+.today-timeline__cursor::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #f5fff9;
+  border-radius: 50%;
+  background: var(--today-accent);
+  transform: translateX(-50%);
+}
+
+/* ---- 底部 AI 输入 ---- */
+.today-ai {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 7px 8px 7px 24px;
+  border-radius: 26px;
+  background: rgb(250 252 251 / 94%);
+  border: 1px solid rgb(255 255 255 / 72%);
+  box-shadow: 0 10px 28px rgb(3 52 50 / 16%);
+}
+
+.today-ai__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #29443e;
+  font-size: 14px;
+  outline: none;
+}
+
+.today-ai__input::placeholder {
+  color: rgb(63 87 79 / 80%);
+}
+
+.today-ai__button {
+  flex-shrink: 0;
+  min-width: 126px;
+  min-height: 42px;
+  border-color: transparent;
+  border-radius: 17px;
+  color: #fff;
+  background: linear-gradient(135deg, #4bb792, #329d84);
+  font-size: 14px;
+}
+
+.today-ai__hint {
+  position: absolute;
+  top: calc(100% + 1px);
+  right: 12px;
+  color: rgb(234 244 241 / 72%);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.today-ai__hint--link {
+  color: #ffe0a6;
+  text-decoration: underline;
+}
+
+.today-ai__hint--error {
+  color: #ffb8ad;
+}
+
+.today-operation-feedback {
+  position: absolute;
+  z-index: 12;
+  right: 370px;
+  bottom: 92px;
+  max-width: 320px;
+  padding: 9px 14px;
+  border: 1px solid rgb(191 236 219 / 34%);
+  border-radius: 14px;
+  color: #eafff6;
+  font-size: 12px;
+  line-height: 1.4;
+  background: rgb(8 61 58 / 88%);
+  box-shadow: 0 10px 28px rgb(0 29 27 / 24%);
+  backdrop-filter: blur(10px);
+}
+
+.today-operation-feedback[data-tone='success'] {
+  border-color: rgb(119 234 177 / 58%);
+}
+
+.today-operation-feedback[data-tone='error'] {
+  border-color: rgb(255 168 143 / 62%);
+  color: #ffe8e1;
+}
+
+/* ---- 今日场景：轻盈白色侧栏（设计书 §5.1） ---- */
+.sidebar.sidebar--today {
+  color: #1c2b26;
+  padding: 28px 18px 24px;
+  background: #fbfcfb;
+  border-right: 1px solid #e8eeeb;
+}
+
+.sidebar--today .sidebar__group:last-of-type {
+  margin-top: auto;
+}
+
+.sidebar--today .sidebar__brand {
+  min-height: 64px;
+  color: #1c2b26;
+  font-size: 19px;
+}
+
+.sidebar--today .sidebar__capture {
+  min-height: 34px;
+  margin-top: 20px;
+  border-color: transparent;
+  color: #60736b;
+  background: transparent;
+  font-size: 12px;
+}
+
+.sidebar--today .sidebar__capture kbd,
+.sidebar--today .sidebar__search kbd {
+  color: #94a49d;
+}
+
+.sidebar--today .sidebar__search {
+  min-height: 34px;
+  border-color: transparent;
+  color: #4c5d56;
+}
+
+.sidebar--today .sidebar__link {
+  min-height: 46px;
+  padding: 0 13px;
+  color: #4c5d56;
+  border-radius: 11px;
+}
+
+.sidebar--today .sidebar__link:hover,
+.sidebar--today .sidebar__link:focus-visible {
+  color: #17241f;
+  background: #e9efec;
+}
+
+.sidebar--today .sidebar__link[data-selected='true'] {
+  color: #ffffff;
+  background: linear-gradient(135deg, #52b786, #72c99a);
+}
+
+.sidebar--today .sidebar__group-label {
+  color: #a1aea8;
+  font-size: 10px;
+}
+
+/* ---- 今日场景：content 全视口无内边距 ---- */
+.content.content--today {
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Today V3 · Phase 3 UI Art
+   统一字体、弱玻璃、状态块、三卡、时间轴与 AI Composer；不改变 Phase 1 构图坐标。
+   ========================================================================== */
+.today-immersive:is(
+  [data-today-v3-phase='3'],
+  [data-today-v3-phase='4'],
+  [data-today-v3-phase='9']
+) {
+  --today-font-ui: Inter, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  --today-glass-surface: linear-gradient(145deg, rgb(217 239 226 / 10%), rgb(25 103 94 / 14%));
+  --today-glass-surface-soft: linear-gradient(145deg, rgb(231 244 233 / 8%), rgb(20 89 83 / 10%));
+  --today-glass-edge: rgb(234 248 239 / 24%);
+  --today-glass-highlight: inset 0 1px 0 rgb(255 255 255 / 8%);
+  --today-glass-depth: 0 18px 44px rgb(0 40 37 / 9%);
+  --today-text-primary: rgb(250 253 251 / 94%);
+  --today-text-secondary: rgb(239 248 244 / 70%);
+  --today-text-tertiary: rgb(229 242 236 / 50%);
+  font-family: var(--today-font-ui);
+  text-rendering: geometricprecision;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-env__heading {
+  font-size: 30px;
+  font-weight: 680;
+  line-height: 1.12;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-env__date {
+  margin-top: 5px;
+  color: var(--today-text-secondary);
+  font-size: 15px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-env__sentence {
+  color: rgb(249 253 251 / 86%);
+  font-size: 16px;
+  font-weight: 420;
+  letter-spacing: 0.01em;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__pressure {
+  padding: 30px 28px;
+  border-color: var(--today-glass-edge);
+  background: var(--today-glass-surface);
+  box-shadow: var(--today-glass-highlight), var(--today-glass-depth);
+  backdrop-filter: blur(14px) saturate(118%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  :is(.today-state-axis__label, .today-state-axis__description) {
+  color: var(--today-text-secondary);
+  font-size: 15px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__score {
+  margin-top: 8px;
+  font-size: 42px;
+  font-weight: 580;
+  letter-spacing: -0.035em;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__level {
+  color: var(--today-text-primary);
+  font-size: 18px;
+  font-weight: 630;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__description {
+  max-width: none;
+  margin-top: 32px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__factors-toggle {
+  color: rgb(219 245 231 / 68%);
+  font-size: 11px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__now
+  span:first-child {
+  color: var(--today-text-secondary);
+  font-size: 13px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-state-axis__now
+  strong {
+  font-size: 39px;
+  font-weight: 570;
+  letter-spacing: -0.025em;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-status-floats {
+  gap: 11px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-status-floats__item {
+  min-height: 68px;
+  padding: 12px 14px;
+  border-color: rgb(236 249 241 / 18%);
+  border-radius: 11px;
+  background: var(--today-glass-surface-soft);
+  box-shadow: var(--today-glass-highlight);
+  backdrop-filter: blur(13px) saturate(118%);
+  text-shadow: 0 2px 12px rgb(0 42 38 / 38%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-status-floats__item[data-active='true'] {
+  border-color: rgb(243 251 247 / 25%);
+  background: linear-gradient(135deg, rgb(229 244 232 / 13%), rgb(17 91 84 / 20%));
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-status-floats__item
+  span {
+  color: var(--today-text-secondary);
+  font-size: 13px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-status-floats__item
+  strong {
+  color: var(--today-text-primary);
+  font-size: 13px;
+  font-weight: 560;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan {
+  gap: 16px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__section {
+  padding: 19px 20px;
+  border-color: var(--today-glass-edge);
+  border-radius: 18px;
+  background: var(--today-glass-surface-soft);
+  box-shadow: var(--today-glass-highlight), var(--today-glass-depth);
+  backdrop-filter: blur(14px) saturate(116%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__section--upcoming,
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__section--flexible {
+  background: var(--today-glass-surface-soft);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__heading
+  h2 {
+  color: var(--today-text-primary);
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__heading--compact
+  h2 {
+  color: rgb(247 252 249 / 88%);
+  font-size: 15px;
+  font-weight: 620;
+  letter-spacing: 0;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  :is(.today-plan__heading p, .today-plan__window, .today-plan__more) {
+  color: var(--today-text-secondary);
+  font-size: 11px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__item {
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: rgb(238 248 242 / 4%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__item[data-state='CURRENT'] {
+  background: linear-gradient(90deg, rgb(101 196 166 / 20%), rgb(241 249 244 / 5%));
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__main
+  strong {
+  color: rgb(249 253 251 / 90%);
+  font-size: 14px;
+  font-weight: 570;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__main
+  span {
+  margin-top: 2px;
+  color: var(--today-text-tertiary);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__empty {
+  color: var(--today-text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-plan__disclosure {
+  color: rgb(246 252 249 / 82%);
+  font-size: 13px;
+  font-weight: 540;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-add__trigger {
+  border-color: rgb(205 242 227 / 28%);
+  color: rgb(218 247 235 / 90%);
+  background: rgb(121 204 174 / 10%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__row {
+  order: 1;
+  height: 61px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__ticks {
+  order: 2;
+  height: 24px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__ticks
+  span {
+  color: rgb(244 251 247 / 82%);
+  font-size: 13px;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__band {
+  inset: 7px 0 14px;
+  border-color: rgb(244 252 248 / 18%);
+  border-radius: 9px;
+  background: rgb(236 247 241 / 8%);
+  box-shadow:
+    var(--today-glass-highlight),
+    0 10px 28px rgb(1 42 38 / 10%);
+  backdrop-filter: blur(8px);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__band-segment {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: rgb(250 253 251 / 82%);
+  font-size: 12px;
+  font-weight: 540;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 9px rgb(0 42 38 / 36%);
+  white-space: nowrap;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-timeline__cursor {
+  top: -12px;
+  bottom: 0;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-ai {
+  min-height: 60px;
+  padding: 7px 8px 7px 26px;
+  border: 1px solid rgb(255 255 255 / 88%);
+  border-radius: 30px;
+  background: rgb(252 254 253 / 96%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 16px 38px rgb(0 50 45 / 18%);
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-ai__input {
+  color: #29483f;
+  font-size: 15px;
+  font-weight: 420;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-ai__button {
+  min-width: 132px;
+  min-height: 44px;
+  border-radius: 19px;
+  background: linear-gradient(135deg, #55bb98, #329b84);
+  box-shadow: 0 7px 18px rgb(45 145 120 / 22%);
+  font-size: 15px;
+  font-weight: 560;
+}
+
+.today-immersive:is([data-today-v3-phase='3'], [data-today-v3-phase='4'], [data-today-v3-phase='9'])
+  .today-ai__button:disabled {
+  color: rgb(255 255 255 / 88%);
+  background: linear-gradient(135deg, #5ebd9f, #3a9e88);
+  opacity: 0.72;
+}
+
+.sidebar--today .sidebar__brand-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.sidebar--today .sidebar__brand-copy strong {
+  color: #17251f;
+  font-size: 19px;
+  font-weight: 690;
+  letter-spacing: -0.025em;
+}
+
+.sidebar--today .sidebar__brand-copy small {
+  color: #87978f;
+  font-size: 11px;
+  font-weight: 450;
+  letter-spacing: 0.08em;
+}
+
+.sidebar--today .sidebar__brand-mark {
+  position: relative;
+  width: 24px;
+  height: 34px;
+  border: 0;
+  border-radius: 70% 15% 70% 20%;
+  background: linear-gradient(145deg, #65df89 0 44%, #24aa89 45% 72%, #177f91 73%);
+  box-shadow: 0 4px 12px rgb(34 151 113 / 18%);
+  transform: rotate(-7deg);
+}
+
+.sidebar--today .sidebar__brand-mark::after {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 4px;
+  width: 1px;
+  height: 30px;
+  background: rgb(255 255 255 / 78%);
+  transform: rotate(10deg);
+  transform-origin: bottom;
+}
+
+.sidebar--today :is(.sidebar__capture, .sidebar__search) {
+  position: absolute;
+  z-index: 2;
+  top: 78px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  min-height: 34px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e7eeea;
+  border-radius: 9px;
+  color: #71837a;
+  background: rgb(250 252 251 / 84%);
+}
+
+.sidebar--today .sidebar__capture {
+  right: 56px;
+}
+
+.sidebar--today .sidebar__search {
+  right: 18px;
+}
+
+.sidebar--today :is(.sidebar__capture, .sidebar__search) .sidebar__capture-label {
+  font-size: 0;
+}
+
+.sidebar--today :is(.sidebar__capture, .sidebar__search) kbd {
+  display: none;
+}
+
+.sidebar--today .sidebar__group:first-of-type {
+  margin-top: 20px;
+}
+
+.sidebar--today .sidebar__group:first-of-type .sidebar__group-label {
+  display: none;
+}
+
+.sidebar--today .sidebar__link {
+  font-size: 14px;
+  font-weight: 470;
+}
+
+.sidebar--today .sidebar__link[data-selected='true'] {
+  background: linear-gradient(135deg, #57bb86, #79cca0);
+  box-shadow: 0 8px 22px rgb(65 169 122 / 16%);
+}
+
+/* ==========================================================================
+   V3 Phase 9：桌面适配
+   大屏只增加留白；窄屏依次压缩卡片间距、侧栏、状态块和右栏，最后才缩小喷泉。
+   ========================================================================== */
+.today-immersive[data-today-v3-phase='9'] {
+  --today-focus-x: 39%;
+  --today-scene-media-offset-x: -11cqw;
+  --today-scene-media-offset-y: 0px;
+  --today-scene-media-scale: 0.94;
+  --today-scene-media-object-x: 50%;
+  --today-scene-media-object-y: 50%;
+  --today-v3-plan-width: 335px;
+  --today-v3-plan-right: 32px;
+  --today-v3-stage-max: 930px;
+  --today-v3-stage-width: min(
+    var(--today-v3-stage-max),
+    calc(100% - var(--today-v3-plan-width) - var(--today-v3-plan-right))
+  );
+  --today-v3-stage-left: max(
+    0px,
+    calc(
+      (100% - var(--today-v3-plan-width) - var(--today-v3-plan-right) - var(--today-v3-stage-max)) /
+        2
+    )
+  );
+  --today-v3-rail-width: min(810px, calc(var(--today-v3-stage-width) - 120px));
+  --today-v3-rail-left: calc(
+    var(--today-v3-stage-left) + (var(--today-v3-stage-width) - var(--today-v3-rail-width)) / 2
+  );
+  --today-v1-timeline-left: 5%;
+  --today-v1-content-right: calc(var(--today-v3-plan-width) + var(--today-v3-plan-right) + 60px);
+  --today-v1-ai-left: 3%;
+  --today-v1-stage-offset: max(
+    0px,
+    calc(
+      (
+          100cqw - var(--today-v3-plan-width) - var(--today-v3-plan-right) -
+            var(--today-v3-stage-max)
+        ) /
+        2
+    )
+  );
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene {
+  container-type: size;
+}
+
+.today-immersive[data-today-v3-phase='9']
+  :is(.today-scene-media__master, .today-scene-media__video) {
+  top: -3.33%;
+  right: auto;
+  bottom: auto;
+  left: -3.33%;
+  width: 106.66%;
+  height: 106.66%;
+  object-position: var(--today-scene-media-object-x) var(--today-scene-media-object-y);
+  transform: translate3d(var(--today-scene-media-offset-x), var(--today-scene-media-offset-y), 0)
+    scale(var(--today-scene-media-scale));
+  transform-origin: var(--today-focus-x) 52%;
+  -webkit-mask-image: linear-gradient(to right, #000 0 80%, rgb(0 0 0 / 82%) 88%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0 80%, rgb(0 0 0 / 82%) 88%, transparent 100%);
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene__environment-overlay {
+  background:
+    linear-gradient(
+      rgb(var(--today-scene-temperature-color) / var(--today-scene-temperature-opacity)),
+      rgb(var(--today-scene-temperature-color) / var(--today-scene-temperature-opacity))
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(3 39 38 / var(--today-scene-readability-top-opacity)) 0%,
+      transparent 20%,
+      transparent 78%,
+      rgb(2 35 34 / var(--today-scene-readability-bottom-opacity)) 100%
+    ),
+    radial-gradient(
+      ellipse at var(--today-focus-x) 50%,
+      transparent 56%,
+      rgb(2 39 38 / var(--today-scene-vignette-opacity)) 100%
+    );
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene__stage {
+  left: var(--today-v3-stage-left);
+  width: var(--today-v3-stage-width);
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene__plan {
+  right: var(--today-v3-plan-right);
+  width: var(--today-v3-plan-width);
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene__timeline {
+  right: var(--today-v1-content-right);
+  left: var(--today-v1-timeline-left);
+  width: auto;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-scene__ai {
+  right: var(--today-v1-content-right);
+  left: var(--today-v1-ai-left);
+  width: auto;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-state-axis__now {
+  left: calc(39cqw - var(--today-v1-stage-offset));
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-state-axis__pressure {
+  left: calc(5cqw - var(--today-v1-stage-offset));
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-state-axis__factors {
+  left: calc(5cqw - var(--today-v1-stage-offset) + 23px);
+}
+
+@media (max-width: 1450px) and (min-width: 1101px) {
+  .today-immersive[data-today-v3-phase='9'] {
+    --today-v3-plan-width: 310px;
+    --today-v3-plan-right: 20px;
+    --today-v3-stage-max: 900px;
+    --today-v3-rail-width: min(800px, calc(var(--today-v3-stage-width) - 100px));
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__environment {
+    right: 20px;
+    left: 36px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    right: 14px;
+    width: 142px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan {
+    gap: 12px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan__section {
+    padding-inline: 16px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__brand {
+    gap: 7px;
+    padding-inline: 4px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__brand-copy {
+    min-width: 0;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__brand-copy
+    strong {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__brand-copy
+    small {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1380px) and (min-width: 1101px) {
+  .today-immersive[data-today-v3-phase='9'] {
+    --today-v3-plan-width: 280px;
+    --today-v3-plan-right: 16px;
+    --today-v3-stage-max: 874px;
+    --today-v3-rail-width: min(760px, calc(var(--today-v3-stage-width) - 100px));
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__environment {
+    right: 16px;
+    left: 28px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__pressure {
+    left: 36px;
+    width: 175px;
+    padding-inline: 22px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__factors {
+    left: 54px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    right: 10px;
+    width: 136px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan {
+    gap: 10px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan__section {
+    padding-inline: 14px;
+  }
+}
+
+@media (max-height: 940px) and (min-width: 1101px) {
+  .today-immersive[data-today-v3-phase='9'] .today-scene__environment {
+    top: 22px;
+    height: 64px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__sentence {
+    padding-top: 26px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__right {
+    padding-top: 38px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__stage {
+    top: 70px;
+    height: 610px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__pressure {
+    top: 62px;
+    min-height: 236px;
+    padding-block: 24px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__description {
+    margin-top: 24px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__factors {
+    top: 278px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__now {
+    top: 468px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__guide {
+    top: 535px;
+    height: 72px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    top: 72px;
+    gap: 8px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats__item {
+    padding-block: 9px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__plan {
+    top: 118px;
+    bottom: 56px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan {
+    grid-template-rows: minmax(220px, 1.4fr) minmax(168px, 1.1fr) minmax(126px, 0.8fr) auto;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__timeline {
+    top: 690px;
+    height: 84px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__ai {
+    top: auto;
+    bottom: 14px;
+    min-height: 60px;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 1101px) {
+  .today-immersive[data-today-v3-phase='9'] .today-scene__environment {
+    top: 16px;
+    height: 52px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__heading {
+    font-size: 27px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__sentence {
+    padding-top: 20px;
+    font-size: 14px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__right {
+    padding-top: 24px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__stage {
+    top: 54px;
+    height: 520px;
+    min-height: 480px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__pressure {
+    top: 48px;
+    min-height: 210px;
+    padding-block: 20px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__score {
+    font-size: 35px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__description {
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__factors {
+    top: 242px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__now {
+    top: 392px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__now strong {
+    font-size: 32px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__guide {
+    top: 452px;
+    height: 64px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    top: 54px;
+    gap: 6px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats__item {
+    padding-block: 7px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__plan {
+    top: 96px;
+    bottom: 48px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan {
+    grid-template-rows: minmax(192px, 1.35fr) minmax(146px, 1.05fr) minmax(108px, 0.75fr) auto;
+    gap: 8px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan__section {
+    padding-block: 12px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-plan__heading {
+    margin-bottom: 7px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__timeline {
+    top: 584px;
+    height: 72px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-scene__ai {
+    bottom: 12px;
+    min-height: 56px;
+  }
+}
+
+/* ==========================================================================
+   Today V3 · Gate 1 参考图构图锁定（1536 × 1024）
+   这一层只校准静态画面的坐标、比例与材质；动态 Renderer 继续保留在 DOM 中。
+   ========================================================================== */
+@media (min-width: 1451px) and (min-height: 941px) {
+  .today-immersive[data-today-v3-phase='9'] {
+    --today-glass-edge: rgb(235 248 241 / 25%);
+    --today-glass-surface: linear-gradient(145deg, rgb(224 242 230 / 12%), rgb(25 103 94 / 15%));
+    --today-glass-surface-soft: linear-gradient(
+      145deg,
+      rgb(234 246 236 / 10%),
+      rgb(20 89 83 / 12%)
+    );
+    background:
+      radial-gradient(920px 620px at 39% 52%, rgb(164 215 181 / 32%), transparent 70%),
+      radial-gradient(1100px 760px at 42% 12%, rgb(105 181 165 / 24%), transparent 66%),
+      radial-gradient(720px 620px at 92% 55%, rgb(83 145 127 / 24%), transparent 68%),
+      linear-gradient(165deg, #135b59 0%, #176762 44%, #0b4645 100%);
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env {
+    position: relative;
+    display: block;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__primary-line {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__heading {
+    font-size: 31px;
+    line-height: 1;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__divider {
+    color: rgb(250 253 251 / 90%);
+    font-size: 23px;
+    font-weight: 600;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__date {
+    margin: 0;
+    color: rgb(250 253 251 / 91%);
+    font-size: 18px;
+    font-weight: 520;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__lunar {
+    margin: 13px 0 0;
+    color: rgb(240 249 245 / 78%);
+    font-size: 15px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__sentence {
+    position: absolute;
+    top: 35px;
+    left: calc(39cqw - 55px);
+    width: 420px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__right {
+    position: absolute;
+    top: 57px;
+    right: 2px;
+    gap: 3px;
+    padding: 0;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-weather__state,
+  .today-immersive[data-today-v3-phase='9'] .today-weather__temperature {
+    color: rgb(247 252 249 / 88%);
+    font-size: 14px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__reschedule {
+    position: relative;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    color: transparent;
+    background: transparent;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-env__reschedule::after {
+    content: '›';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgb(247 252 249 / 46%);
+    font-size: 18px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .fountain-stage__pool,
+  .today-immersive[data-today-v3-phase='9'] .fountain-stage__water-surface {
+    opacity: 0;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .fountain-stage__static-fountain {
+    opacity: 0.94;
+    mix-blend-mode: screen;
+    transform: scale(1.08, 1.16);
+    transform-origin: 50% 76%;
+    filter: saturate(0.72) brightness(1.06);
+  }
+
+  .today-immersive[data-today-v3-phase='9']
+    .fountain-stage[data-webgl-active='true']
+    .fountain-stage__static-fountain {
+    opacity: 0.94;
+    filter: saturate(0.72) brightness(1.06);
+  }
+
+  .today-immersive[data-today-v3-phase='9'] :is(.fountain-stage__webgl, .fountain-stage__dynamic) {
+    opacity: 0;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    right: 40px;
+  }
+
+  .today-immersive[data-today-v3-phase='9'] .today-state-axis__description small {
+    display: block;
+    color: inherit;
+    font: inherit;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today {
+    padding: 30px 18px 22px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    :is(.sidebar__capture, .sidebar__search) {
+    position: static;
+    display: flex;
+    width: auto;
+    min-height: 0;
+    border-radius: var(--radius-control);
+    font-size: var(--font-size-body);
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__capture {
+    padding: 11px 12px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__search {
+    padding: 9px 12px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    :is(.sidebar__capture, .sidebar__search)
+    .sidebar__capture-label {
+    font-size: var(--font-size-body);
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    :is(.sidebar__capture, .sidebar__search)
+    kbd {
+    display: inline;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__brand {
+    min-height: 72px;
+    gap: 13px;
+    padding: 0 6px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__brand-mark {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 48px;
+    border: 0;
+    color: #23b978;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__brand-mark::after {
+    content: none;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__brand-copy
+    strong {
+    font-size: 22px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__brand-copy
+    small {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__group:first-of-type {
+    margin-top: 20px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__navigation {
+    gap: 4px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__link {
+    gap: 10px;
+    min-height: 0;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9']) .sidebar--today .sidebar__group-label {
+    font-size: 11px;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__group:nth-of-type(2) {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #edf1ef;
+  }
+
+  .app-shell:has(.today-immersive[data-today-v3-phase='9'])
+    .sidebar--today
+    .sidebar__group:last-of-type {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #edf1ef;
+  }
+
+  .sidebar--today .sidebar__profile {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 9px;
+    min-height: 70px;
+    margin-top: 8px;
+    padding: 13px 5px 0;
+    border-top: 1px solid #edf1ef;
+    color: #32443d;
+    font-size: 14px;
+  }
+
+  .sidebar--today .sidebar__avatar {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #dce6e1;
+    border-radius: 50%;
+    color: #5c756a;
+    background: #eef3f0;
+  }
+}
+
+/* ==========================================================================
+   Today V1 视觉校准
+   单一 focus axis 与 Scene Media crop 同时约束静态母版和 A/B 视频层。
+   ========================================================================== */
+.today-v1-debug {
+  position: absolute;
+  z-index: 30;
+  inset: 0;
+  pointer-events: none;
+}
+
+.today-v1-debug span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgb(255 255 255 / 60%);
+  box-shadow: 0 0 0 1px rgb(4 39 38 / 22%);
+}
+
+.today-v1-debug span[data-line='scene-left'] {
+  left: 0;
+}
+
+.today-v1-debug span[data-line='focus'] {
+  left: var(--today-focus-x);
+  width: 2px;
+  background: rgb(255 214 102 / 86%);
+}
+
+.today-v1-debug span[data-line='right-rail'] {
+  right: calc(var(--today-v3-plan-width) + var(--today-v3-plan-right));
+  background: rgb(255 153 187 / 78%);
+}
+
+.today-v1-debug span[data-line='timeline-left'] {
+  left: var(--today-v1-timeline-left);
+  top: 76%;
+  background: rgb(126 220 255 / 82%);
+}
+
+.today-v1-debug span[data-line='timeline-right'] {
+  right: var(--today-v1-content-right);
+  top: 76%;
+  background: rgb(126 220 255 / 82%);
+}
+
+.today-v1-debug span[data-line='ai-left'] {
+  left: var(--today-v1-ai-left);
+  top: 88%;
+  background: rgb(144 255 184 / 82%);
+}
+
+.today-v1-debug span[data-line='ai-right'] {
+  right: var(--today-v1-content-right);
+  top: 88%;
+  background: rgb(144 255 184 / 82%);
+}
+
+@media (min-width: 1101px) {
+  .today-immersive[data-today-v3-phase='9'] .today-status-floats {
+    right: auto;
+    left: calc(56cqw - var(--today-v1-stage-offset));
+  }
+}
+
+/* V2 收尾 P1：Header 使用稳定的三列关系，中心句不再依赖视口经验坐标。 */
+.today-immersive[data-today-v3-phase='9'] .today-env {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-env__title {
+  min-width: 0;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-env__date {
+  margin: 8px 0 0;
+  color: rgb(240 249 245 / 78%);
+  font-size: 15px;
+  font-weight: 450;
+  white-space: nowrap;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-env__sentence {
+  position: static;
+  width: auto;
+  margin: 0;
+  padding-top: 34px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.today-immersive[data-today-v3-phase='9'] .today-env__right {
+  position: static;
+  justify-self: end;
+  gap: 3px;
+  padding-top: 34px;
+}
+
+@media (max-width: 720px) {
+  .today-immersive[data-today-v3-phase='9'] .today-env {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}

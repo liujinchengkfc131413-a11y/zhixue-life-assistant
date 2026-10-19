@@ -1,0 +1,132 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T07:00:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-15T01:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-supermarket",
+      "targetEntityId": "task-supermarket",
+      "title": "逛超市",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T02:30:00.000Z",
+      "endAt": "2026-08-15T03:30:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-lunch",
+      "targetEntityId": null,
+      "title": "午餐",
+      "blockType": "REST",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:00:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-drama",
+      "targetEntityId": "task-drama",
+      "title": "看剧",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T06:30:00.000Z",
+      "endAt": "2026-08-15T08:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-walk",
+      "targetEntityId": "task-walk",
+      "title": "饭后散步",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T11:00:00.000Z",
+      "endAt": "2026-08-15T12:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-movie",
+      "targetEntityId": "task-movie",
+      "title": "电影之夜",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T12:30:00.000Z",
+      "endAt": "2026-08-15T14:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [
+    {
+      "id": "blk-supermarket",
+      "entityId": "task-supermarket",
+      "title": "逛超市",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T02:30:00.000Z",
+      "endAt": "2026-08-15T03:30:00.000Z",
+      "priority": "NORMAL"
+    },
+    {
+      "id": "blk-drama",
+      "entityId": "task-drama",
+      "title": "看剧",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T06:30:00.000Z",
+      "endAt": "2026-08-15T08:00:00.000Z",
+      "priority": "LOW"
+    },
+    {
+      "id": "blk-walk",
+      "entityId": "task-walk",
+      "title": "饭后散步",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T11:00:00.000Z",
+      "endAt": "2026-08-15T12:00:00.000Z",
+      "priority": "NORMAL"
+    },
+    {
+      "id": "blk-movie",
+      "entityId": "task-movie",
+      "title": "电影之夜",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T12:30:00.000Z",
+      "endAt": "2026-08-15T14:00:00.000Z",
+      "priority": "LOW"
+    }
+  ],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 540, "workMinutes": 0, "lifeMinutes": 360, "freeMinutes": 540 },
+  "pressure": {
+    "score": 8,
+    "level": "RELAXED",
+    "algorithmVersion": "pressure-v1",
+    "factors": [{ "code": "LOW_LOAD", "points": 8, "message": "今天几乎全部留给了自己" }]
+  },
+  "notifications": [],
+  "suggestions": []
+}

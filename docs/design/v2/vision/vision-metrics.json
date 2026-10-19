@@ -1,0 +1,265 @@
+{
+  "fixture": "D:\\Documents\\知雪的生活助手\\test-results\\v2-vision\\data",
+  "metrics": [
+    {
+      "view": "kanban",
+      "viewport": {
+        "width": 1448,
+        "height": 1086
+      },
+      "screenshot": "kanban-1448x1086.png",
+      "pageHeight": 1086,
+      "pageWidth": 1448,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "calendar",
+      "viewport": {
+        "width": 1448,
+        "height": 1086
+      },
+      "screenshot": "calendar-1448x1086.png",
+      "pageHeight": 1086,
+      "pageWidth": 1448,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "timeline",
+      "viewport": {
+        "width": 1448,
+        "height": 1086
+      },
+      "screenshot": "timeline-1448x1086.png",
+      "pageHeight": 1086,
+      "pageWidth": 1448,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "goal-tree",
+      "viewport": {
+        "width": 1448,
+        "height": 1086
+      },
+      "screenshot": "goal-tree-1448x1086.png",
+      "pageHeight": 1086,
+      "pageWidth": 1448,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "kanban",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "kanban-1536x1024.png",
+      "pageHeight": 1044,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "calendar",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "calendar-1536x1024.png",
+      "pageHeight": 1027,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "timeline",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "timeline-1536x1024.png",
+      "pageHeight": 1027,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "goal-tree",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "goal-tree-1536x1024.png",
+      "pageHeight": 1027,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "kanban",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "kanban-1366x768.png",
+      "pageHeight": 1044,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 31,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "calendar",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "calendar-1366x768.png",
+      "pageHeight": 1027,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "timeline",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "timeline-1366x768.png",
+      "pageHeight": 1027,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "goal-tree",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "goal-tree-1366x768.png",
+      "pageHeight": 1027,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "kanban",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "kanban-1920x1080.png",
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "calendar",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "calendar-1920x1080.png",
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "timeline",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "timeline-1920x1080.png",
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "goal-tree",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "goal-tree-1920x1080.png",
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "kanban",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "kanban-1100x900.png",
+      "pageHeight": 1151,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 281,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "calendar",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "calendar-1100x900.png",
+      "pageHeight": 1087,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "timeline",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "timeline-1100x900.png",
+      "pageHeight": 1087,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "view": "goal-tree",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "goal-tree-1100x900.png",
+      "pageHeight": 1087,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "kanbanInternalOverflow": 0,
+      "atmosphereAnimation": "none"
+    }
+  ]
+}

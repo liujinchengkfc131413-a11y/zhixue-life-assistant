@@ -1,0 +1,79 @@
+.app-shell:not([data-theme='today']) :is(.record-list, .record-row, .work-list li, .shopping-list) {
+  border-color: var(--border-soft);
+}
+
+.app-shell:not([data-theme='today']) .inbox-list {
+  border-color: var(--border-soft);
+  background: var(--surface);
+}
+
+.app-shell:not([data-theme='today']) .inbox-list > button {
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+
+.app-shell:not([data-theme='today']) .inbox-list > button[data-selected='true'] {
+  border-radius: var(--radius-control);
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.app-shell:not([data-theme='today']) .inbox-list small {
+  color: var(--text-muted);
+}
+
+.app-shell:not([data-theme='today']) .inbox-detail blockquote {
+  border-left-color: var(--accent);
+  color: var(--text-secondary);
+  background: var(--surface);
+}
+
+.app-shell:not([data-theme='today']) .inbox-results {
+  border-color: var(--border-soft);
+}
+
+.app-shell:not([data-theme='today']) .record-row--muted {
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+.app-shell:not([data-theme='today']) :is(.record-meta, .work-list small, .shopping-list small) {
+  color: var(--text-muted);
+}
+
+.app-shell:not([data-theme='today'])
+  :is(.pipeline-item, .project-list button, .resource-list button, .backup-row, .notification-row) {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-card-small);
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+}
+
+.app-shell:not([data-theme='today'])
+  :is(.pipeline-item, .project-list button, .resource-list button)[data-selected='true'] {
+  border-color: var(--border-strong);
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.app-shell:not([data-theme='today']) .notification-row--unread {
+  border-color: var(--border-strong);
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.app-shell:not([data-theme='today']) .notification-row[data-severity='WARNING'] {
+  border-left-color: var(--semantic-warning);
+}
+
+.app-shell:not([data-theme='today']) .notification-row[data-severity='CRITICAL'] {
+  border-left-color: var(--semantic-danger);
+}
+
+.app-shell:not([data-theme='today']) .notification-row__main :is(strong, p) {
+  color: inherit;
+}
+
+.app-shell:not([data-theme='today']) .notification-row__main small {
+  color: var(--text-muted);
+}

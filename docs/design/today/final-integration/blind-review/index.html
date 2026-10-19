@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Today Scene 四状态动态盲测</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+        background: #0d171a;
+        color: #edf5f2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(circle at 70% 8%, rgb(102 157 143 / 18%), transparent 38%),
+          linear-gradient(145deg, #102024, #091215 74%);
+      }
+
+      main {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 36px 0 56px;
+      }
+
+      header {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(24px, 4vw, 36px);
+        font-weight: 650;
+      }
+
+      .intro,
+      .meta,
+      .hint {
+        color: #aec2bd;
+        line-height: 1.65;
+      }
+
+      .panel {
+        overflow: hidden;
+        border: 1px solid rgb(210 233 225 / 16%);
+        border-radius: 24px;
+        background: rgb(20 37 41 / 82%);
+        box-shadow: 0 24px 72px rgb(0 0 0 / 28%);
+      }
+
+      .stage {
+        position: relative;
+        aspect-ratio: 3 / 2;
+        background: #071012;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .trial-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 8px 12px;
+        border: 1px solid rgb(255 255 255 / 18%);
+        border-radius: 999px;
+        background: rgb(7 16 18 / 74%);
+        color: #f7fbfa;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+      }
+
+      .review {
+        display: grid;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      fieldset {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+
+      legend {
+        margin-bottom: 12px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .choice {
+        min-height: 48px;
+        border: 1px solid rgb(200 225 218 / 18%);
+        border-radius: 13px;
+        background: rgb(231 245 240 / 6%);
+        color: #dce9e5;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .choice:hover,
+      .choice:focus-visible {
+        border-color: #8ec8b9;
+        outline: none;
+        background: rgb(142 200 185 / 13%);
+      }
+
+      .choice[aria-pressed='true'] {
+        border-color: #a8dfcf;
+        background: #285c50;
+        color: #fff;
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .primary,
+      .secondary {
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 12px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .primary {
+        border: 0;
+        background: #8ec8b9;
+        color: #0b2922;
+        font-weight: 650;
+      }
+
+      .primary:disabled {
+        cursor: not-allowed;
+        opacity: 0.42;
+      }
+
+      .secondary {
+        border: 1px solid rgb(200 225 218 / 20%);
+        background: transparent;
+        color: #dce9e5;
+      }
+
+      .result {
+        display: none;
+        gap: 16px;
+        padding: 24px;
+      }
+
+      .result[data-visible='true'] {
+        display: grid;
+      }
+
+      .result strong {
+        font-size: 24px;
+      }
+
+      .result[data-pass='true'] strong {
+        color: #9de3c7;
+      }
+
+      .result[data-pass='false'] strong {
+        color: #ffd0a6;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #cfddd9;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid rgb(210 233 225 / 10%);
+        text-align: left;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          width: min(100% - 20px, 1080px);
+          padding-top: 20px;
+        }
+
+        fieldset {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .review,
+        .result {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Today Scene 四状态动态盲测</h1>
+        <p class="intro">
+          页面不会显示压力数值或真实状态名。请只依据水景动态，判断每个匿名片段属于平静、均衡、忙碌还是高压。
+        </p>
+        <p class="meta" id="batch-meta"></p>
+      </header>
+
+      <section class="panel" id="test-panel" aria-labelledby="trial-label">
+        <div class="stage">
+          <video id="clip" controls loop muted playsinline preload="auto"></video>
+          <span class="trial-badge" id="trial-label"></span>
+        </div>
+        <div class="review">
+          <fieldset id="choices">
+            <legend>这个场景给你的压力感受是？</legend>
+            <button class="choice" type="button" data-choice="calm" aria-pressed="false">
+              平静
+            </button>
+            <button class="choice" type="button" data-choice="balanced" aria-pressed="false">
+              均衡
+            </button>
+            <button class="choice" type="button" data-choice="busy" aria-pressed="false">
+              忙碌
+            </button>
+            <button class="choice" type="button" data-choice="intense" aria-pressed="false">
+              高压
+            </button>
+          </fieldset>
+          <div class="actions">
+            <button class="primary" id="next" type="button" disabled>确认并看下一个</button>
+            <span class="hint" id="status" aria-live="polite"
+              >先播放片段，再选择最接近的状态。</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="panel result" id="result" data-visible="false" aria-live="polite">
+        <strong id="result-title"></strong>
+        <p class="intro" id="result-copy"></p>
+        <table>
+          <thead>
+            <tr>
+              <th>片段</th>
+              <th>你的判断</th>
+              <th>答案</th>
+              <th>结果</th>
+            </tr>
+          </thead>
+          <tbody id="result-rows"></tbody>
+        </table>
+        <div class="actions">
+          <button class="primary" id="download" type="button">下载结果 JSON</button>
+          <button class="secondary" id="restart" type="button">重新随机盲测</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const labels = { calm: '平静', balanced: '均衡', busy: '忙碌', intense: '高压' };
+        const rank = { calm: 0, balanced: 1, busy: 2, intense: 3 };
+        const sources = {
+          calm: '../../../../../apps/web/src/assets/today/scene-video/fountain-balanced-loop-seamless.mp4',
+          balanced:
+            '../../../../../apps/web/src/assets/today/scene-video/fountain-calm-loop-seamless.mp4',
+          busy: '../../../../../apps/web/src/assets/today/scene-video/fountain-intense-loop-seamless.mp4',
+          intense:
+            '../../../../../apps/web/src/assets/today/scene-video/fountain-busy-loop-seamless.mp4',
+        };
+        const params = new URLSearchParams(location.search);
+        const initialSeed =
+          Number(params.get('seed')) || crypto.getRandomValues(new Uint32Array(1))[0];
+        let randomState = initialSeed >>> 0;
+        const random = () => {
+          randomState += 0x6d2b79f5;
+          let value = randomState;
+          value = Math.imul(value ^ (value >>> 15), value | 1);
+          value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+          return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+        };
+        const shuffle = (items) => {
+          const output = [...items];
+          for (let index = output.length - 1; index > 0; index -= 1) {
+            const target = Math.floor(random() * (index + 1));
+            [output[index], output[target]] = [output[target], output[index]];
+          }
+          return output;
+        };
+
+        const trials = shuffle(
+          Object.keys(sources).flatMap((state) => [
+            { state, phase: 0.17 },
+            { state, phase: 0.61 },
+          ]),
+        ).map((trial, index) => ({ ...trial, code: String.fromCharCode(65 + index) }));
+        const answers = [];
+        let index = 0;
+        let selected = null;
+
+        const clip = document.querySelector('#clip');
+        const trialLabel = document.querySelector('#trial-label');
+        const choices = [...document.querySelectorAll('.choice')];
+        const next = document.querySelector('#next');
+        const status = document.querySelector('#status');
+        const testPanel = document.querySelector('#test-panel');
+        const result = document.querySelector('#result');
+        document.querySelector('#batch-meta').textContent =
+          `评审批次 ${initialSeed} · 共 8 个片段，每个状态出现 2 次`;
+
+        const showTrial = () => {
+          const trial = trials[index];
+          selected = null;
+          trialLabel.textContent = `片段 ${index + 1} / ${trials.length} · 编号 ${trial.code}`;
+          status.textContent = '先播放片段，再选择最接近的状态。';
+          next.disabled = true;
+          next.textContent = index === trials.length - 1 ? '提交盲测' : '确认并看下一个';
+          choices.forEach((button) => button.setAttribute('aria-pressed', 'false'));
+          clip.src = sources[trial.state];
+          clip.onloadedmetadata = () => {
+            clip.currentTime = clip.duration * trial.phase;
+            clip.play().catch(() => {
+              status.textContent = '浏览器未自动播放，请点击视频播放按钮。';
+            });
+          };
+          clip.load();
+        };
+
+        choices.forEach((button) => {
+          button.addEventListener('click', () => {
+            selected = button.dataset.choice;
+            choices.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+            next.disabled = false;
+            status.textContent = `已选择“${labels[selected]}”，确认后不能返回修改。`;
+          });
+        });
+
+        const finish = () => {
+          clip.pause();
+          const correct = answers.filter((answer) => answer.choice === answer.state).length;
+          const nonAdjacentErrors = answers.filter(
+            (answer) => Math.abs(rank[answer.choice] - rank[answer.state]) > 1,
+          ).length;
+          const perState = Object.keys(sources).map((state) => ({
+            state,
+            correct: answers.filter((answer) => answer.state === state && answer.choice === state)
+              .length,
+          }));
+          const everyStateRecognized = perState.every((item) => item.correct >= 1);
+          const passed = correct >= 6 && nonAdjacentErrors === 0 && everyStateRecognized;
+          const payload = {
+            schemaVersion: 1,
+            batch: initialSeed,
+            reviewedAt: new Date().toISOString(),
+            criteria: {
+              minimumCorrect: 6,
+              requireEveryStateRecognized: true,
+              maximumNonAdjacentErrors: 0,
+            },
+            correct,
+            total: answers.length,
+            nonAdjacentErrors,
+            everyStateRecognized,
+            passed,
+            answers,
+          };
+
+          result.dataset.visible = 'true';
+          result.dataset.pass = String(passed);
+          document.querySelector('#result-title').textContent = passed
+            ? `通过 · ${correct} / ${answers.length}`
+            : `未通过 · ${correct} / ${answers.length}`;
+          document.querySelector('#result-copy').textContent = passed
+            ? '四个状态均至少被正确识别一次，且没有跨级误判。'
+            : '需检查正确率、是否有状态从未被识别，或是否出现跨级误判。此结果只代表本次独立人工评审。';
+          document.querySelector('#result-rows').innerHTML = answers
+            .map(
+              (answer) =>
+                `<tr><td>${answer.code}</td><td>${labels[answer.choice]}</td><td>${labels[answer.state]}</td><td>${answer.choice === answer.state ? '正确' : '误判'}</td></tr>`,
+            )
+            .join('');
+          document.querySelector('#download').onclick = () => {
+            const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], {
+              type: 'application/json',
+            });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `today-scene-blind-review-${initialSeed}.json`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+          };
+          testPanel.hidden = true;
+          result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        next.addEventListener('click', () => {
+          if (!selected) return;
+          const trial = trials[index];
+          answers.push({
+            code: trial.code,
+            choice: selected,
+            state: trial.state,
+            phase: trial.phase,
+          });
+          if (index === trials.length - 1) {
+            finish();
+            return;
+          }
+          index += 1;
+          showTrial();
+        });
+        document.querySelector('#restart').addEventListener('click', () => {
+          location.href = location.pathname;
+        });
+
+        showTrial();
+      })();
+    </script>
+  </body>
+</html>

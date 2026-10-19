@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "timeZone": "Asia/Shanghai",
+  "viewport": { "width": 1536, "height": 1024, "deviceScaleFactor": 1 },
+  "baseline": {
+    "fixture": "6-in-progress.json",
+    "screenshot": "../00-phase0-current-baseline.png"
+  },
+  "fixtures": [
+    {
+      "file": "1-workday-relaxed.json",
+      "screenshot": "1-workday-relaxed.png",
+      "covers": ["低压", "工作日", "正常任务量", "无天气"]
+    },
+    {
+      "file": "2-high-pressure.json",
+      "screenshot": "2-high-pressure.png",
+      "covers": ["高压", "工作密集", "任务密集", "无天气"]
+    },
+    {
+      "file": "3-rest-day.json",
+      "screenshot": "3-rest-day.png",
+      "covers": ["生活密集", "低压", "无天气"]
+    },
+    {
+      "file": "4-sleep-deprived.json",
+      "screenshot": "4-sleep-deprived.png",
+      "covers": ["睡眠不足", "工作密集", "任务密集", "无天气"]
+    },
+    {
+      "file": "5-empty.json",
+      "screenshot": "5-empty.png",
+      "covers": ["任务为空", "空闲充足", "低压", "无天气"]
+    },
+    {
+      "file": "6-in-progress.json",
+      "screenshot": "6-in-progress.png",
+      "covers": ["正常压力", "进行中状态", "无天气"]
+    }
+  ]
+}

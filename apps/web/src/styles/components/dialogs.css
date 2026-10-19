@@ -1,0 +1,42 @@
+.app-shell .dialog-backdrop {
+  z-index: var(--layer-dialog);
+  background: var(--dialog-backdrop);
+  backdrop-filter: blur(4px);
+}
+
+.app-shell [data-surface='system'] {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-modal);
+  color: var(--text-primary);
+  background: var(--panel-background);
+  box-shadow: var(--dialog-shadow);
+  backdrop-filter: blur(4px);
+  color-scheme: var(--color-scheme);
+}
+
+.app-shell [data-surface='system'] :is(h2, strong) {
+  color: var(--text-primary);
+}
+
+.app-shell [data-surface='system'] :is(.eyebrow, p, time, .quick-capture-dialog__footer) {
+  color: var(--text-secondary);
+}
+
+.app-shell [data-surface='system'] .search-dialog__input {
+  border-color: var(--border-strong);
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  background: var(--field-bg);
+}
+
+.app-shell [data-surface='system'] .search-dialog__input input {
+  background: transparent;
+}
+
+.app-shell [data-surface='system'] .search-result {
+  border-color: var(--border-soft);
+}
+
+.app-shell [data-surface='system'] .search-result:hover {
+  background: var(--surface-hover);
+}

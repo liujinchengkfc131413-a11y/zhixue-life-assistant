@@ -1,0 +1,98 @@
+{
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "phase": "3",
+    "composition": "v3-ui-art-static",
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 1024
+    },
+    "scene": {
+      "x": 240,
+      "y": 0,
+      "width": 1296,
+      "height": 1024
+    },
+    "environment": {
+      "x": 290,
+      "y": 28,
+      "width": 1216,
+      "height": 90
+    },
+    "fountain": {
+      "x": 240,
+      "y": 80,
+      "width": 930,
+      "height": 700
+    },
+    "pressure": {
+      "x": 290,
+      "y": 155,
+      "width": 190,
+      "height": 265
+    },
+    "statuses": {
+      "x": 1000,
+      "y": 165,
+      "width": 150,
+      "height": 305
+    },
+    "plan": {
+      "x": 1170,
+      "y": 140,
+      "width": 335,
+      "height": 805
+    },
+    "timeline": {
+      "x": 310,
+      "y": 800,
+      "width": 810,
+      "height": 85
+    },
+    "composer": {
+      "x": 275,
+      "y": 932,
+      "width": 810,
+      "height": 60
+    },
+    "planCards": 3,
+    "fountainLayers": ["environment", "scene-glow", "pool", "water-surface", "static-fountain"],
+    "canvasCount": 0,
+    "horizontalOverflow": false,
+    "uiStyles": {
+      "heading": {
+        "font-size": "30px",
+        "font-weight": "680",
+        "line-height": "33.6px"
+      },
+      "pressure": {
+        "background-image": "linear-gradient(145deg, rgba(217, 239, 226, 0.1), rgba(25, 103, 94, 0.14))",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(14px) saturate(1.18)"
+      },
+      "status": {
+        "min-height": "68px",
+        "font-family": "Inter, \"Segoe UI\", \"Microsoft YaHei\", \"PingFang SC\", sans-serif",
+        "backdrop-filter": "blur(13px) saturate(1.18)"
+      },
+      "planCard": {
+        "background-image": "linear-gradient(145deg, rgba(231, 244, 233, 0.08), rgba(20, 89, 83, 0.1))",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(14px) saturate(1.16)"
+      },
+      "composer": {
+        "height": "60px",
+        "border-radius": "30px",
+        "background-color": "rgba(252, 254, 253, 0.96)"
+      }
+    },
+    "visibleHeadings": ["今日", "今日计划", "即将开始"]
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

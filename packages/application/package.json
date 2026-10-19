@@ -1,0 +1,18 @@
+{
+  "name": "@life-assistant/application",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@life-assistant/contracts": "workspace:*",
+    "@life-assistant/domain": "workspace:*",
+    "@life-assistant/kernel": "workspace:*"
+  }
+}

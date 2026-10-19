@@ -1,0 +1,110 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T06:30:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-15T00:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-report",
+      "targetEntityId": "task-report",
+      "title": "写周报",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T02:30:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-lunch",
+      "targetEntityId": null,
+      "title": "午休",
+      "blockType": "REST",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:00:00.000Z",
+      "endAt": "2026-08-15T04:30:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-shopping",
+      "targetEntityId": "task-shopping",
+      "title": "买菜",
+      "blockType": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:30:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-meeting",
+      "targetEntityId": "event-meeting",
+      "title": "团队例会",
+      "blockType": "EVENT",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:00:00.000Z",
+      "endAt": "2026-08-15T08:00:00.000Z",
+      "source": "MANUAL",
+      "isLocked": true,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [
+    {
+      "id": "blk-report",
+      "entityId": "task-report",
+      "title": "写周报",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T02:30:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-shopping",
+      "entityId": "task-shopping",
+      "title": "买菜",
+      "kind": "TASK",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:30:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "priority": "NORMAL"
+    },
+    {
+      "id": "blk-meeting",
+      "entityId": "event-meeting",
+      "title": "团队例会",
+      "kind": "EVENT",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:00:00.000Z",
+      "endAt": "2026-08-15T08:00:00.000Z",
+      "priority": "URGENT"
+    }
+  ],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 480, "workMinutes": 360, "lifeMinutes": 60, "freeMinutes": 540 },
+  "pressure": {
+    "score": 22,
+    "level": "RELAXED",
+    "algorithmVersion": "pressure-v1",
+    "factors": [{ "code": "LOW_LOAD", "points": 22, "message": "可用时间充足，节奏平稳" }]
+  },
+  "notifications": [],
+  "suggestions": []
+}

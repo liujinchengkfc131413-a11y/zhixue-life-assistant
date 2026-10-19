@@ -1,0 +1,70 @@
+{
+  "fixture": "D:\\Documents\\知雪的生活助手\\test-results\\v2-assistant\\data",
+  "metrics": [
+    {
+      "viewport": {
+        "width": 1448,
+        "height": 1086
+      },
+      "screenshot": "assistant-1448x1086.png",
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none",
+      "atmosphereBackground": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 832px, rgba(9, 37, 62, 0.34) 1120px, rgb(24, 63, 98) 1376px), url(\"http://127.0.0.1:43127/assets/vision-ai-arc-horizon-v2-DKSwvgOA.png\"), none",
+      "selectedCardShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "composerShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "workspaceColumns": "290px 848px"
+    },
+    {
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "assistant-1536x1024.png",
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none",
+      "atmosphereBackground": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 832px, rgba(9, 37, 62, 0.34) 1120px, rgb(24, 63, 98) 1376px), url(\"http://127.0.0.1:43127/assets/vision-ai-arc-horizon-v2-DKSwvgOA.png\"), none",
+      "selectedCardShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "composerShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "workspaceColumns": "290px 936px"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "assistant-1366x768.png",
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none",
+      "atmosphereBackground": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 832px, rgba(9, 37, 62, 0.34) 1120px, rgb(24, 63, 98) 1376px), url(\"http://127.0.0.1:43127/assets/vision-ai-arc-horizon-v2-DKSwvgOA.png\"), none",
+      "selectedCardShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "composerShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "workspaceColumns": "290px 766px"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "assistant-1920x1080.png",
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none",
+      "atmosphereBackground": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 832px, rgba(9, 37, 62, 0.34) 1120px, rgb(24, 63, 98) 1376px), url(\"http://127.0.0.1:43127/assets/vision-ai-arc-horizon-v2-DKSwvgOA.png\"), none",
+      "selectedCardShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "composerShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "workspaceColumns": "290px 968px"
+    },
+    {
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "assistant-1100x900.png",
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none",
+      "atmosphereBackground": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 832px, rgba(9, 37, 62, 0.34) 1120px, rgb(24, 63, 98) 1376px), url(\"http://127.0.0.1:43127/assets/vision-ai-arc-horizon-v2-DKSwvgOA.png\"), none",
+      "selectedCardShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "composerShadow": "rgba(255, 255, 255, 0.72) 0px 0px 5px 0px, rgba(167, 151, 255, 0.52) 0px 0px 24px 0px, rgba(151, 142, 255, 0.3) 0px 0px 48px 0px, rgba(236, 244, 255, 0.36) 0px 1px 0px 0px inset",
+      "workspaceColumns": "238px 564px"
+    }
+  ]
+}

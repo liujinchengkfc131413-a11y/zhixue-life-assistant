@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-08-27T02:27:04.796Z",
+  "metrics": [
+    {
+      "route": "/",
+      "theme": "today",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1024,
+      "colorScheme": "normal",
+      "atmospherePresent": false,
+      "atmospherePointerEvents": "not-applicable"
+    },
+    {
+      "route": "/work",
+      "theme": "work",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1101,
+      "colorScheme": "dark",
+      "atmospherePresent": true,
+      "atmospherePointerEvents": "none"
+    },
+    {
+      "route": "/life",
+      "theme": "life",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1276,
+      "colorScheme": "light",
+      "atmospherePresent": true,
+      "atmospherePointerEvents": "none"
+    },
+    {
+      "route": "/plans-goals",
+      "theme": "vision",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1097,
+      "colorScheme": "dark",
+      "atmospherePresent": true,
+      "atmospherePointerEvents": "none"
+    },
+    {
+      "route": "/assistant",
+      "theme": "ai",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1024,
+      "colorScheme": "dark",
+      "atmospherePresent": true,
+      "atmospherePointerEvents": "none"
+    },
+    {
+      "route": "/inbox",
+      "theme": "system",
+      "viewportWidth": 1536,
+      "viewportHeight": 1024,
+      "horizontalOverflow": 0,
+      "documentHeight": 1024,
+      "colorScheme": "dark",
+      "atmospherePresent": true,
+      "atmospherePointerEvents": "none"
+    }
+  ]
+}

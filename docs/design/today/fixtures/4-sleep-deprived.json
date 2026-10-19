@@ -1,0 +1,180 @@
+{
+  "date": "2026-08-15",
+  "timeZone": "Asia/Shanghai",
+  "serverNow": "2026-08-15T04:30:00.000Z",
+  "timelineVersion": 1,
+  "blocks": [
+    {
+      "id": "blk-sleep",
+      "targetEntityId": null,
+      "title": "睡眠",
+      "blockType": "SLEEP",
+      "area": "SLEEP",
+      "startAt": "2026-08-14T16:00:00.000Z",
+      "endAt": "2026-08-14T21:30:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": true,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-a",
+      "targetEntityId": "task-a",
+      "title": "项目联调",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-14T23:00:00.000Z",
+      "endAt": "2026-08-15T01:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-b",
+      "targetEntityId": "task-b",
+      "title": "接口文档",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T03:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-c",
+      "targetEntityId": "task-c",
+      "title": "评审准备",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T03:00:00.000Z",
+      "endAt": "2026-08-15T04:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-lunch",
+      "targetEntityId": null,
+      "title": "午餐",
+      "blockType": "REST",
+      "area": "LIFE",
+      "startAt": "2026-08-15T04:00:00.000Z",
+      "endAt": "2026-08-15T05:00:00.000Z",
+      "source": "ROUTINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-d",
+      "targetEntityId": "task-d",
+      "title": "代码走查",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T05:00:00.000Z",
+      "endAt": "2026-08-15T07:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-e",
+      "targetEntityId": "task-e",
+      "title": "修复遗留缺陷",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:00:00.000Z",
+      "endAt": "2026-08-15T09:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    },
+    {
+      "id": "blk-f",
+      "targetEntityId": "task-f",
+      "title": "发布清单核对",
+      "blockType": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T09:00:00.000Z",
+      "endAt": "2026-08-15T10:00:00.000Z",
+      "source": "RULE_ENGINE",
+      "isLocked": false,
+      "crossAreaWarning": false
+    }
+  ],
+  "plan": [
+    {
+      "id": "blk-a",
+      "entityId": "task-a",
+      "title": "项目联调",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-14T23:00:00.000Z",
+      "endAt": "2026-08-15T01:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-b",
+      "entityId": "task-b",
+      "title": "接口文档",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T01:00:00.000Z",
+      "endAt": "2026-08-15T03:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-c",
+      "entityId": "task-c",
+      "title": "评审准备",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T03:00:00.000Z",
+      "endAt": "2026-08-15T04:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-d",
+      "entityId": "task-d",
+      "title": "代码走查",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T05:00:00.000Z",
+      "endAt": "2026-08-15T07:00:00.000Z",
+      "priority": "NORMAL"
+    },
+    {
+      "id": "blk-e",
+      "entityId": "task-e",
+      "title": "修复遗留缺陷",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T07:00:00.000Z",
+      "endAt": "2026-08-15T09:00:00.000Z",
+      "priority": "HIGH"
+    },
+    {
+      "id": "blk-f",
+      "entityId": "task-f",
+      "title": "发布清单核对",
+      "kind": "TASK",
+      "area": "WORK",
+      "startAt": "2026-08-15T09:00:00.000Z",
+      "endAt": "2026-08-15T10:00:00.000Z",
+      "priority": "NORMAL"
+    }
+  ],
+  "freeTime": [],
+  "totals": { "sleepMinutes": 330, "workMinutes": 600, "lifeMinutes": 60, "freeMinutes": 450 },
+  "pressure": {
+    "score": 58,
+    "level": "ELEVATED",
+    "algorithmVersion": "pressure-v1",
+    "factors": [
+      { "code": "LONG_WORK_RUN", "points": 24, "message": "连续工作 120 分钟" },
+      { "code": "LOW_BUFFER", "points": 20, "message": "可用缓冲仅 90 分钟" },
+      { "code": "SHORT_SLEEP", "points": 14, "message": "睡眠不足 5.5 小时" }
+    ]
+  },
+  "notifications": [],
+  "suggestions": []
+}

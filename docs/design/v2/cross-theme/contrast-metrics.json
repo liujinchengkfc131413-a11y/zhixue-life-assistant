@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-08-28T02:16:06.751Z",
+  "metrics": [
+    {
+      "theme": "work",
+      "primary": 16.655462658086154,
+      "secondary": 10.923317572932463,
+      "muted": 7.267179456044178,
+      "fieldBorder": "rgba(188, 215, 228, 0.22)",
+      "placeholder": "rgb(145, 165, 180)"
+    },
+    {
+      "theme": "life",
+      "primary": 9.27773939860998,
+      "secondary": 5.736161571808553,
+      "muted": 5.004153494655567,
+      "fieldBorder": "rgba(124, 151, 128, 0.3)",
+      "placeholder": "rgb(91, 106, 97)"
+    },
+    {
+      "theme": "vision",
+      "primary": 9.808960967723872,
+      "secondary": 8.031227122072233,
+      "muted": 5.49927747294312,
+      "fieldBorder": "rgba(235, 244, 252, 0.24)",
+      "placeholder": "rgb(173, 190, 208)"
+    },
+    {
+      "theme": "ai",
+      "primary": 10.255094255158602,
+      "secondary": 8.031737000172694,
+      "muted": 5.395618066269972,
+      "fieldBorder": "rgba(230, 240, 255, 0.22)",
+      "placeholder": "rgb(168, 184, 204)"
+    },
+    {
+      "theme": "system",
+      "primary": 14.99423342046858,
+      "secondary": 8.37585092677215,
+      "muted": 4.657616798543905,
+      "fieldBorder": "rgba(207, 220, 226, 0.22)",
+      "placeholder": "rgb(120, 133, 139)"
+    }
+  ],
+  "todayPlaceholder": "rgba(63, 87, 79, 0.8)"
+}

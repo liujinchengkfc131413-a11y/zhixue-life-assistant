@@ -1,0 +1,265 @@
+{
+  "fixture": "D:\\Documents\\知雪的生活助手\\test-results\\v2-life\\data",
+  "metrics": [
+    {
+      "route": "/life",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "overview-browse-p5-1536x1024.png",
+      "dpr": 1,
+      "pageHeight": 1276,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/shopping",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "shopping-browse-p5-1536x1024.png",
+      "dpr": 1,
+      "pageHeight": 1024,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/diet",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "diet-browse-p5-1536x1024.png",
+      "dpr": 1,
+      "pageHeight": 1024,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/fitness",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "fitness-browse-p5-1536x1024.png",
+      "dpr": 1,
+      "pageHeight": 1024,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/entertainment",
+      "viewport": {
+        "width": 1536,
+        "height": 1024
+      },
+      "screenshot": "entertainment-browse-p5-1536x1024.png",
+      "dpr": 1,
+      "pageHeight": 1024,
+      "pageWidth": 1536,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "overview-browse-p5-1366x768.png",
+      "dpr": 1,
+      "pageHeight": 1276,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/shopping",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "shopping-browse-p5-1366x768.png",
+      "dpr": 1,
+      "pageHeight": 768,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/diet",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "diet-browse-p5-1366x768.png",
+      "dpr": 1,
+      "pageHeight": 768,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/fitness",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "fitness-browse-p5-1366x768.png",
+      "dpr": 1,
+      "pageHeight": 768,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/entertainment",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "screenshot": "entertainment-browse-p5-1366x768.png",
+      "dpr": 1,
+      "pageHeight": 768,
+      "pageWidth": 1366,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "overview-browse-p5-1920x1080.png",
+      "dpr": 1,
+      "pageHeight": 1276,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/shopping",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "shopping-browse-p5-1920x1080.png",
+      "dpr": 1,
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/diet",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "diet-browse-p5-1920x1080.png",
+      "dpr": 1,
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/fitness",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "fitness-browse-p5-1920x1080.png",
+      "dpr": 1,
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/entertainment",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "entertainment-browse-p5-1920x1080.png",
+      "dpr": 1,
+      "pageHeight": 1080,
+      "pageWidth": 1920,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "overview-browse-p5-1100x900.png",
+      "dpr": 1,
+      "pageHeight": 1270,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/shopping",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "shopping-browse-p5-1100x900.png",
+      "dpr": 1,
+      "pageHeight": 900,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/diet",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "diet-browse-p5-1100x900.png",
+      "dpr": 1,
+      "pageHeight": 900,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/fitness",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "fitness-browse-p5-1100x900.png",
+      "dpr": 1,
+      "pageHeight": 900,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    },
+    {
+      "route": "/life/entertainment",
+      "viewport": {
+        "width": 1100,
+        "height": 900
+      },
+      "screenshot": "entertainment-browse-p5-1100x900.png",
+      "dpr": 1,
+      "pageHeight": 900,
+      "pageWidth": 1100,
+      "horizontalOverflow": 0,
+      "atmosphereAnimation": "none"
+    }
+  ]
+}

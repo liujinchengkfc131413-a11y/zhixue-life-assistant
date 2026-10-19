@@ -1,0 +1,115 @@
+{
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "phase": "5",
+    "composition": "v3-water-atmosphere",
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 240,
+      "height": 1024
+    },
+    "scene": {
+      "x": 240,
+      "y": 0,
+      "width": 1296,
+      "height": 1024
+    },
+    "environment": {
+      "x": 290,
+      "y": 28,
+      "width": 1216,
+      "height": 90
+    },
+    "fountain": {
+      "x": 240,
+      "y": 80,
+      "width": 930,
+      "height": 700
+    },
+    "pressure": {
+      "x": 290,
+      "y": 155,
+      "width": 190,
+      "height": 265
+    },
+    "statuses": {
+      "x": 1000,
+      "y": 165,
+      "width": 150,
+      "height": 254
+    },
+    "plan": {
+      "x": 1170,
+      "y": 140,
+      "width": 335,
+      "height": 805
+    },
+    "timeline": {
+      "x": 310,
+      "y": 800,
+      "width": 810,
+      "height": 80
+    },
+    "composer": {
+      "x": 275,
+      "y": 932,
+      "width": 810,
+      "height": 56
+    },
+    "planCards": 3,
+    "fountainLayers": [
+      "environment",
+      "scene-glow",
+      "webgl-water",
+      "pool",
+      "water-surface",
+      "static-fountain",
+      "dynamic-water"
+    ],
+    "canvasCount": 0,
+    "webglCanvasCount": 1,
+    "webglMode": "full",
+    "webglOwnership": "surface,main-jet,arc-streams,droplets,splash,ripple,mist,lighting,reflection",
+    "webglAtmosphere": "droplets,splash,ripple,mist,lighting,reflection",
+    "atmosphereElapsed": 33,
+    "gpuParticles": 120,
+    "gpuSplashParticles": 25,
+    "gpuRipples": 16,
+    "geometryStreams": "primary_arc:2,mid_stream:6,fine_stream:4",
+    "horizontalOverflow": false,
+    "uiStyles": {
+      "heading": {
+        "font-size": "29px",
+        "font-weight": "650",
+        "line-height": "normal"
+      },
+      "pressure": {
+        "background-image": "none",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(5px)"
+      },
+      "status": {
+        "min-height": "auto",
+        "font-family": "Inter, \"Segoe UI\", \"Microsoft YaHei\", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "backdrop-filter": "blur(7px)"
+      },
+      "planCard": {
+        "background-image": "none",
+        "border-radius": "18px",
+        "backdrop-filter": "blur(7px)"
+      },
+      "composer": {
+        "height": "56px",
+        "border-radius": "26px",
+        "background-color": "rgba(250, 252, 251, 0.94)"
+      }
+    },
+    "visibleHeadings": ["今日", "今日计划", "即将开始"]
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

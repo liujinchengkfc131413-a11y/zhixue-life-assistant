@@ -1,0 +1,68 @@
+[
+  {
+    "route": "/",
+    "theme": "today",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1080,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/work",
+    "theme": "work",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1103,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/life",
+    "theme": "life",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1278,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/plans-goals",
+    "theme": "vision",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1080,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/assistant",
+    "theme": "ai",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1080,
+    "horizontalOverflow": 0
+  },
+  {
+    "route": "/inbox",
+    "theme": "system",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollWidth": 1920,
+    "scrollHeight": 1080,
+    "horizontalOverflow": 0
+  }
+]

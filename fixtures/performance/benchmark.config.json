@@ -1,0 +1,22 @@
+{
+  "seed": 20260814,
+  "targets": {
+    "tasks": 100000,
+    "chatSessions": 250,
+    "messagesPerSession": 200,
+    "goals": 500,
+    "plans": 1000,
+    "events": 2000,
+    "notes": 1000,
+    "selfMediaContents": 500,
+    "devProjects": 200,
+    "learningResources": 500,
+    "shoppingItems": 1000,
+    "recipes": 300,
+    "mealRecords": 800,
+    "exerciseCatalog": 100,
+    "workoutSessions": 400,
+    "entertainmentItems": 600,
+    "inboxItems": 300
+  }
+}

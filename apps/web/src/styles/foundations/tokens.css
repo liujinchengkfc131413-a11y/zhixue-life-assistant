@@ -1,0 +1,54 @@
+:root {
+  --font-family-sans:
+    Inter, 'Segoe UI', 'Microsoft YaHei', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --font-size-page-title: 32px;
+  --font-size-section-title: 23px;
+  --font-size-card-title: 18px;
+  --font-size-important-body: 16px;
+  --font-size-body: 14px;
+  --font-size-secondary: 13px;
+  --font-size-meta: 12px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.55;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --radius-control: 11px;
+  --radius-card-small: 14px;
+  --radius-modal: 20px;
+
+  --semantic-success: #6fcf9d;
+  --semantic-warning: #e4ae61;
+  --semantic-danger: #e26d70;
+  --semantic-info: #76b4e5;
+  --navigation-brand: #a9d5c2;
+  --navigation-brand-tint: rgb(179 215 204 / 8%);
+  --navigation-control-tint: rgb(222 237 237 / 4%);
+  --overlay-soft: rgb(29 45 36 / 18%);
+
+  /* Compatibility aliases: legacy selectors resolve through the V2 semantic contract. */
+  --color-success: var(--semantic-success);
+  --color-warning: var(--semantic-warning);
+  --color-danger: var(--semantic-danger);
+  --color-info: var(--semantic-info);
+
+  --border-width: 1px;
+  --focus-width: 3px;
+  --focus-offset: 2px;
+  --control-height: 40px;
+  --layer-sidebar: 20;
+  --layer-drawer: 40;
+  --layer-dialog: 50;
+}
